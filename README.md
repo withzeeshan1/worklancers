@@ -1,46 +1,39 @@
-# WORKLANCERS - Digital Agency Website (MERN)
+# WORKLANCERS - Digital Agency Website (static)
 
     worklancers/
-      client/   React + Vite + Tailwind (public site + admin dashboard)
-      server/   Node + Express + MongoDB API
+      client/   The website: React + Vite + Tailwind + Framer Motion. Builds to plain static files.
+      server/   Old Node/Express/MongoDB API + admin dashboard. NOT used by the static site.
 
-## Requirements
-Node.js 20+ and a MongoDB database (local, or a free MongoDB Atlas cluster).
+The website needs no server or database. `npm run build` produces a `client/dist/` folder of
+HTML/CSS/JS that you can upload to any web host.
 
-## 1. Backend
-    cd server
-    npm install
-    cp .env.example .env        # then edit .env
-Set at minimum: MONGO_URI, JWT_SECRET (long random string), CLIENT_URL.
-Create your admin account (there is no public registration):
-set ADMIN_EMAIL and ADMIN_PASSWORD (10+ characters) in .env, then
-    npm run seed
-Remove ADMIN_PASSWORD from .env afterwards. Start the API:
-    npm run dev                 # http://localhost:5000
-Run the tests (needs a MongoDB; set TEST_MONGO_URI):
-    npm test
-
-## 2. Frontend
+## Run locally
     cd client
     npm install
-    cp .env.example .env
+    cp .env.example .env        # then edit .env
     npm run dev                 # http://localhost:5173
-Admin dashboard: http://localhost:5173/admin/login
 
-## Optional integrations (leave blank if unused)
-- Image uploads: CLOUDINARY_CLOUD_NAME / API_KEY / API_SECRET. Without them uploads return a clear
-  "not configured" error; you can paste image URLs instead.
-- Email notifications for new inquiries: SMTP_HOST / SMTP_PORT / SMTP_USER / SMTP_PASS / MAIL_FROM / NOTIFY_EMAIL.
-  Without them, inquiries are still saved and visible in the dashboard.
+## Settings (client/.env)
+- `VITE_SITE_URL`: your live domain, e.g. https://www.worklancers.com (used for SEO, sitemap.xml, robots.txt).
+- `VITE_CONTACT_EMAIL`, `VITE_WHATSAPP_NUMBER`: shown on the site (WhatsApp number in international format, digits only).
+- `VITE_WEB3FORMS_KEY`: free key from https://web3forms.com (sign up with the email that should receive leads).
+  With a key, every form (contact, free audit, software estimate) is emailed to you.
+  Without a key, the forms show a "Send on WhatsApp" button with the visitor's details pre-filled.
 
-## Deployment (outline)
-- API: any Node host (Render, Railway, VPS). Set the env vars above, NODE_ENV=production,
-  CLIENT_URL = your website URL (comma-separate multiple origins).
-- Client: `npm run build`, deploy `dist/` to Netlify/Vercel/any static host with SPA fallback
-  (all routes -> index.html). Set VITE_API_URL to your API URL + /api before building.
-- Serve /sitemap.xml and /robots.txt from the API domain or proxy them from the website domain.
+Settings are baked in at build time, so rebuild after changing `.env`.
 
-## Current status
-- Done and tested: backend API, admin dashboard, public pages, contact form -> database.
-- Not yet done: public Services/Portfolio/Blog pages still read demo data from
-  client/src/services/content.js instead of the API; Settings are saved but not yet shown on the public site.
+## Deploy
+    cd client
+    npm run build               # output: client/dist/
+
+Upload the **contents** of `client/dist/` (including the hidden `.htaccess` file) to your host:
+- **cPanel / Apache / MAMP:** upload to `public_html/` (or the htdocs root). `.htaccess` makes links like
+  /services/web-development work on refresh. The site must be at the domain root, not in a subfolder.
+- **Netlify:** drag and drop the `dist` folder (the included `_redirects` file handles links).
+- **Vercel:** import the repo with root directory `client` (the included `vercel.json` handles links).
+
+## Editing content
+All text for services, portfolio, blog posts, FAQs and the home page promises is in
+`client/src/services/content.js`. The custom software landing page text is at the top of
+`client/src/pages/CustomSoftware.jsx`. Add real client reviews to `testimonials` in `content.js`
+and the testimonials section appears automatically.
