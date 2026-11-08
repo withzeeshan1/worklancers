@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { color-scheme: dark; }
+  body { @apply bg-surface text-ink antialiased font-sans; }
+  h1, h2, h3, h4 { @apply text-fg font-semibold tracking-tight; }
+  h1 { letter-spacing: -0.035em; }
+  h2 { letter-spacing: -0.025em; }
+  ::selection { background: rgb(139 92 246 / 0.28); color: #fff; }
+  option { background: #0E0E16; color: #F5F5F7; }
+}
+
+@layer utilities {
+  .text-gradient { @apply bg-gradient-to-r from-violet-400 via-fuchsia-300 to-sky-400 bg-clip-text text-transparent animate-shine; background-size: 200% auto; }
+  /* Serif italic accent for highlighted words, e.g. <em className="accent">clients</em> */
+  .accent { @apply font-serif font-normal italic tracking-normal; }
+  .pause-on-hover:hover { animation-play-state: paused; }
+  .bg-grid {
+    background-image: linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px), linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .section-alt { @apply border-y border-line; background: linear-gradient(180deg, rgb(255 255 255 / 0.015), rgb(255 255 255 / 0.03)); }
+  .glass { @apply border border-line bg-white/[0.03] backdrop-blur-xl; }
+}
+
+/* Cursor-following glow on cards. PublicLayout sets --x/--y on every .spotlight element. */
+.spotlight { position: relative; isolation: isolate; }
+.spotlight::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: -1;
+  background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), rgb(139 92 246 / 0.14), transparent 45%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.spotlight::after {
+  content: ''; position: absolute; inset: -1px; border-radius: inherit; pointer-events: none; padding: 1px;
+  background: radial-gradient(300px circle at var(--x, 50%) var(--y, 50%), rgb(167 139 250 / 0.7), transparent 45%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity 0.3s;
+}
+.spotlight:hover::before, .spotlight:hover::after { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
