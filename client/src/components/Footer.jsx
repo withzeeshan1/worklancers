@@ -13,7 +13,11 @@ export default function Footer() {
       <div className="pointer-events-none absolute bottom-0 left-1/2 h-64 w-[900px] -translate-x-1/2 translate-y-1/2 rounded-full bg-violet-600/20 blur-[120px]" aria-hidden="true" />
       <div className="relative mx-auto grid max-w-7xl gap-12 px-4 pb-10 pt-16 sm:px-6 lg:grid-cols-12 lg:px-8">
         <div className="lg:col-span-5">
+<<<<<<< HEAD
           <Logo variant="footer" />
+=======
+          <Logo />
+>>>>>>> d2e23abe04166c49791b6fba6923358c43d241e0
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">A software house and digital agency. Web, software, mobile, design, marketing and AI automation from one accountable team.</p>
           <div className="mt-6 flex flex-wrap gap-3 text-sm">
             <a href={`mailto:${SITE.email}`} className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-ink transition hover:border-white/20 hover:text-fg"><Mail size={15} /> {SITE.email}</a>
