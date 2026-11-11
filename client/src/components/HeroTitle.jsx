@@ -53,15 +53,9 @@ function RotatingWord() {
 export default function HeroTitle() {
   return (
     <h1 className="mx-auto max-w-5xl text-5xl leading-[1.05] [text-shadow:0_4px_40px_rgb(0_0_0/0.55)] sm:text-7xl lg:text-[5.5rem]" style={{ perspective: 800 }}
-<<<<<<< HEAD
       aria-label={`We Develop ${WORDS.join(', ')} That Grow Your Business.`}>
       <span aria-hidden="true">
         <Letters text="We Develop" />
-=======
-      aria-label={`We Engineer ${WORDS.join(', ')} That Grow Your Business.`}>
-      <span aria-hidden="true">
-        <Letters text="We Engineer" />
->>>>>>> d2e23abe04166c49791b6fba6923358c43d241e0
         <span className="block"><RotatingWord /></span>
         <Letters text="That Grow Your" delay={0.45} />{' '}
         <Letters text="Business." delay={0.8} />
