@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import Seo from '../components/Seo';
+import { blogPosting, breadcrumbs } from '../seo/schema';
 import NotFound from './NotFound';
 import CtaBanner from '../components/CtaBanner';
 import { Button, Section } from '../components/ui';
@@ -15,7 +16,7 @@ export default function BlogDetail() {
   if (!p) return <NotFound />;
   return (
     <>
-      <Seo title={p.title} description={p.excerpt} path={`/blog/${p.slug}`} />
+      <Seo title={p.title} description={p.excerpt} path={`/blog/${p.slug}`} type="article" jsonLd={[blogPosting(p), breadcrumbs([['Home', '/'], ['Blog', '/blog'], [p.title, `/blog/${p.slug}`]])]} />
       <Section>
         <article className="mx-auto max-w-3xl">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="inline-block rounded-full bg-primary-light px-3 py-1 text-sm font-semibold text-violet-300">{p.category}</motion.p>

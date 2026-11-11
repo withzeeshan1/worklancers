@@ -41,7 +41,7 @@ export function SectionHeading({ eyebrow, title, text, center = true }) {
 export function PageHeader({ title, text, eyebrow, children, image = '/images/code-screen.jpg' }) {
   return (
     <div className="relative -mt-24 overflow-hidden pt-24">
-      {image && <FadeImage src={image} overlay="bg-gradient-to-r from-surface via-surface/75 to-transparent" />}
+      {image && <FadeImage priority src={image} overlay="bg-gradient-to-r from-surface via-surface/75 to-transparent" />}
             {image && <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-surface to-transparent" aria-hidden="true" />}
       <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]" aria-hidden="true" />
       <div className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/25 blur-[120px]" aria-hidden="true" />

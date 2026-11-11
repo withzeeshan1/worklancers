@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Seo from '../components/Seo';
+import { breadcrumbs } from '../seo/schema';
 import { PageHeader, Section } from '../components/ui';
 import { posts } from '../services/content';
 import { formatDate } from '../utils/format';
@@ -13,7 +14,7 @@ export default function Blog() {
   const shown = active === 'All' ? posts : posts.filter((p) => p.category === active);
   return (
     <>
-      <Seo title="Blog" description="Practical articles on web development, SEO and automation from Worklancers." path="/blog" />
+      <Seo title="Blog: Web Development, SEO & AI Tips" path="/blog" image="/images/code-closeup.jpg" description="Practical guides on choosing a web development agency, SEO for new websites and using AI automation in your business, from the Worklancers team." jsonLd={breadcrumbs([['Home', '/'], ['Blog', '/blog']])} />
       <PageHeader image="/images/code-closeup.jpg" eyebrow="Insights" title="Blog" text="Practical tips on building and growing your digital presence." />
       <Section>
         <div className="mb-10 flex flex-wrap gap-2">

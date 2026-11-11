@@ -1,9 +1,11 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { Suspense, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { MotionConfig, motion, useScroll, useSpring } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
+import { organization } from '../seo/schema';
 
 export default function PublicLayout() {
   const { pathname, hash } = useLocation();
@@ -25,17 +27,23 @@ export default function PublicLayout() {
     window.addEventListener('pointermove', onMove, { passive: true });
     return () => window.removeEventListener('pointermove', onMove);
   }, []);
+  // Skip the page fade on the very first load so pre-rendered content is visible immediately
+  // (better for search engines and loading speed); later page changes still fade in.
+  // (The page the visitor landed on is shown immediately; pages they navigate to fade in.)
+  const [landingPath] = useState(pathname);
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 25 });
 
   return (
     // reducedMotion="user" turns off transform animations for visitors who ask for less motion.
     <MotionConfig reducedMotion="user">
+      <Helmet><script type="application/ld+json">{JSON.stringify(organization())}</script></Helmet>
       <div className="flex min-h-screen flex-col">
         <motion.div className="fixed inset-x-0 top-0 z-[60] h-0.5 origin-left bg-gradient-to-r from-violet-500 via-fuchsia-400 to-sky-400" style={{ scaleX: progress }} aria-hidden="true" />
         <Navbar />
-        <motion.main key={pathname} className="flex-1" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, ease: 'easeOut' }}>
-          <Outlet />
+        <motion.main key={pathname} className="flex-1" initial={pathname === landingPath ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, ease: 'easeOut' }}>
+          {/* pages are loaded on demand; the pre-rendered HTML stays on screen until the page code arrives */}
+          <Suspense fallback={null}><Outlet /></Suspense>
         </motion.main>
         <Footer />
         <WhatsAppButton />

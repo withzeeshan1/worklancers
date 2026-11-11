@@ -2,13 +2,14 @@ import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Check, MessageCircle } from 'lucide-react';
 import Seo from '../components/Seo';
+import { breadcrumbs, serviceSchema } from '../seo/schema';
 import Reveal from '../components/Reveal';
 import ServiceCard from '../components/ServiceCard';
 import CtaBanner from '../components/CtaBanner';
 import NotFound from './NotFound';
 import { Button, PageHeader, Section, SectionHeading } from '../components/ui';
 import { serviceIcons } from '../utils/icons';
-import { services } from '../services/content';
+import { services, serviceSeo } from '../services/content';
 import { whatsappLink } from '../utils/config';
 
 function List({ title, items }) {
@@ -34,7 +35,8 @@ export default function ServiceDetail() {
   const related = services.filter((s) => s.slug !== slug).slice(0, 3);
   return (
     <>
-      <Seo title={service.title} description={service.description} path={`/services/${service.slug}`} />
+      <Seo title={serviceSeo[service.slug]?.title || service.title} description={serviceSeo[service.slug]?.description || service.description} path={`/services/${service.slug}`} image={service.image}
+        jsonLd={[serviceSchema({ name: service.title, description: service.description, path: `/services/${service.slug}`, offers: service.subs }), breadcrumbs([['Home', '/'], ['Services', '/services'], [service.title, `/services/${service.slug}`]])]} />
       <PageHeader image={service.image} eyebrow="Service" title={service.title} text={service.description}>
         <div className="flex flex-wrap items-center gap-4">
           <motion.span initial={{ rotate: -20, scale: 0 }} animate={{ rotate: 0, scale: 1 }} transition={{ type: 'spring', delay: 0.4 }}

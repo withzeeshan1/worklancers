@@ -5,7 +5,7 @@ import { Button } from '../components/ui';
 export default function NotFound() {
   return (
     <div className="mx-auto max-w-xl px-4 py-24 text-center">
-      <Seo title="Page not found" />
+      <Seo title="Page Not Found" path="/404" noindex />
       <motion.p initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 200, damping: 12 }}
         className="text-gradient text-8xl font-bold">404</motion.p>
       <h1 className="mt-4 text-2xl">Page not found</h1>

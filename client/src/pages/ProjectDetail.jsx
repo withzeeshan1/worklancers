@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import Seo from '../components/Seo';
+import { breadcrumbs } from '../seo/schema';
 import Reveal from '../components/Reveal';
 import CtaBanner from '../components/CtaBanner';
 import NotFound from './NotFound';
@@ -15,7 +16,7 @@ export default function ProjectDetail() {
   const service = services.find((s) => s.title.startsWith(p.category.split(' ')[0]))?.title;
   return (
     <>
-      <Seo title={p.title} description={p.description} path={`/portfolio/${p.slug}`} />
+      <Seo title={`${p.title} (${p.category} Demo)`} description={`${p.description} Built with ${p.technologies.join(', ')}.`} path={`/portfolio/${p.slug}`} image={p.image} jsonLd={breadcrumbs([['Home', '/'], ['Portfolio', '/portfolio'], [p.title, `/portfolio/${p.slug}`]])} />
       <PageHeader image={p.image} eyebrow={p.category} title={p.title} text={p.description} />
       <Section>
         <div className="grid gap-8 lg:grid-cols-3">

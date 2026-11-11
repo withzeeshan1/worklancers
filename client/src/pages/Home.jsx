@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Check, ArrowRight, ArrowUpRight, MessageCircle, X, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
+import { website, faqPage } from '../seo/schema';
 import Reveal from '../components/Reveal';
 import Counter from '../components/Counter';
 import HeroVisual from '../components/HeroVisual';
@@ -24,11 +25,10 @@ export default function Home() {
 
   return (
     <>
-      <Seo description="Worklancers is a software house and digital agency building websites, custom software, apps and AI automation that turn visitors into paying clients. Get a free website audit." path="/" />
-
+      <Seo path="/" description="Worklancers is a software house in Pakistan building websites, custom software, mobile apps and AI automation for businesses worldwide. Get a free website audit." jsonLd={[website(), faqPage(faqs)]} />
       {/* HERO */}
       <section className="relative -mt-24 overflow-hidden pt-24">
-        <FadeImage src="/images/hero-code.jpg" overlay="bg-gradient-to-b from-black/70 via-black/55 to-black/70" position="center 40%" />
+        <FadeImage priority src="/images/hero-code.jpg" overlay="bg-gradient-to-b from-black/70 via-black/55 to-black/70" position="center 40%" />
         {/* extra shade right behind the headline so it stays readable */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_45%_at_50%_32%,rgb(0_0_0/0.5),transparent)]" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-surface to-transparent" aria-hidden="true" />

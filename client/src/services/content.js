@@ -107,3 +107,13 @@ export const guarantees = [
   { value: 0, prefix: '$', label: 'Free audit & consultation' },
   { value: services.reduce((n, s) => n + s.subs.length, 0), suffix: '', label: 'Specialized services' },
 ];
+
+// Search titles/descriptions for each service page (titles under ~60 chars, descriptions under ~160).
+export const serviceSeo = {
+  'web-development': { title: 'Web Development Company in Pakistan', description: 'Custom websites, MERN web apps, WordPress and e-commerce sites that load fast and bring in leads. Fixed-price quotes from Worklancers, a Pakistan software house.' },
+  'mobile-app-development': { title: 'Mobile App Development (Android & iOS)', description: 'Android, iOS and React Native app development for startups and businesses. One codebase, clean UI and API integration. Get a free estimate from Worklancers.' },
+  'graphic-design-branding': { title: 'Logo, Branding & UI/UX Design Services', description: 'Logo design, brand identity, UI/UX design and social media graphics that make your business look trusted and professional. Branding services by Worklancers.' },
+  'digital-marketing-seo': { title: 'SEO & Digital Marketing Services', description: 'SEO, Google Ads, social media marketing and content marketing that bring qualified traffic and measurable results. Digital marketing services by Worklancers.' },
+  'ecommerce-solutions': { title: 'Shopify & WooCommerce Store Development', description: 'Online stores built on Shopify and WooCommerce with payment gateways, product setup and fast checkout. E-commerce development by Worklancers.' },
+  'ai-automation': { title: 'AI Chatbots & Business Automation Services', description: 'AI chatbots, AI agents and workflow automation that cut manual work and answer customers 24/7. Practical AI solutions from Worklancers.' },
+};

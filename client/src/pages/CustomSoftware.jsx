@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Check, MessageCircle, Rocket, Layers, LayoutDashboard, Wrench, Smartphone, Bot, Briefcase, Users, Handshake, Clock, ShieldCheck, Globe2, BadgeDollarSign } from 'lucide-react';
 import Seo from '../components/Seo';
+import { breadcrumbs, faqPage, serviceSchema } from '../seo/schema';
 import Reveal from '../components/Reveal';
 import CodeWindow from '../components/CodeWindow';
 import FadeImage from '../components/FadeImage';
@@ -57,11 +58,11 @@ const faqs = [
 export default function CustomSoftware() {
   return (
     <>
-      <Seo title="Custom Software Development" description="Worklancers is a software house building MVPs, SaaS platforms, web apps, mobile apps and AI integrations. Fixed-price projects, dedicated developers and white-label development." path="/custom-software" />
-
+      <Seo title="Custom Software Development Company" path="/custom-software" image="/images/software-code.jpg" description="Custom software development: MVPs, SaaS platforms, web apps, mobile apps and AI integrations. Fixed-price projects, dedicated developers and white-label work."
+        jsonLd={[serviceSchema({ name: 'Custom Software Development', description: 'MVPs, SaaS platforms, web apps, internal tools, mobile apps and AI/API integrations.', path: '/custom-software', offers: builds.map((b) => b.title) }), faqPage(faqs), breadcrumbs([['Home', '/'], ['Custom Software', '/custom-software']])]} />
       {/* HERO */}
       <section className="relative -mt-20 overflow-hidden bg-panel pt-20">
-        <FadeImage src="/images/software-code.jpg" overlay="bg-gradient-to-r from-panel via-panel/80 to-panel/10" />
+        <FadeImage priority src="/images/software-code.jpg" overlay="bg-gradient-to-r from-panel via-panel/80 to-panel/10" />
         <div className="pointer-events-none absolute -left-32 top-0 h-[28rem] w-[28rem] animate-blob rounded-full bg-primary/40 blur-3xl" aria-hidden="true" />
         <div className="pointer-events-none absolute -right-24 bottom-0 h-96 w-96 animate-blob rounded-full bg-sky-500/20 blur-3xl [animation-delay:5s]" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:48px_48px]" aria-hidden="true" />

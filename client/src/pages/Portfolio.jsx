@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Seo from '../components/Seo';
+import { breadcrumbs } from '../seo/schema';
 import ProjectCard from '../components/ProjectCard';
 import CtaBanner from '../components/CtaBanner';
 import { PageHeader, Section } from '../components/ui';
@@ -12,7 +13,7 @@ export default function Portfolio() {
   const shown = active === 'All' ? projects : projects.filter((p) => p.category === active);
   return (
     <>
-      <Seo title="Portfolio" description="Demo projects showing the kind of work Worklancers can build." path="/portfolio" />
+      <Seo title="Portfolio: Websites, Apps & Software" path="/portfolio" image="/images/developers.jpg" description="Explore demo websites, web apps, mobile apps, branding and AI projects that show what the Worklancers team can design and build for your business." jsonLd={breadcrumbs([['Home', '/'], ['Portfolio', '/portfolio']])} />
       <PageHeader image="/images/developers.jpg" eyebrow="Our work" title="See what we can build for you" text="Demo projects created to show our capabilities. They are not completed client work. Ask us for a live walkthrough on a call." />
       <Section>
         <div className="mb-10 flex flex-wrap gap-2" role="tablist" aria-label="Project categories">

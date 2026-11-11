@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import Seo from '../components/Seo';
+import { breadcrumbs } from '../seo/schema';
 import Reveal from '../components/Reveal';
 import ServiceCard from '../components/ServiceCard';
 import AuditSection from '../components/AuditSection';
@@ -10,7 +11,7 @@ import { services } from '../services/content';
 export default function Services() {
   return (
     <>
-      <Seo title="Services" description="Web development, custom software, mobile apps, branding, SEO, e-commerce and AI automation services from Worklancers." path="/services" />
+      <Seo title="Web, App & Software Development Services" path="/services" description="Web development, custom software, mobile apps, UI/UX & branding, SEO, e-commerce and AI automation services. One team, fixed-price quotes, delivered on time." jsonLd={breadcrumbs([['Home', '/'], ['Services', '/services']])} />
       <PageHeader eyebrow="What we do" title="Services built around one goal: growing your business" text="Pick one service or let one team handle everything, from the first sketch to your thousandth customer.">
         <div className="flex flex-wrap gap-4">
           <Button to="/contact">Get a Free Quote <ArrowRight size={16} /></Button>

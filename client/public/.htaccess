@@ -1,16 +1,30 @@
-# Apache / cPanel / MAMP: send every unknown URL to index.html so links like /services/web-development work.
+# Apache / cPanel / MAMP. Every page is a pre-rendered .html file (see scripts/prerender.mjs).
+DirectoryIndex index.html
+# Folders like /services/ also hold sub-pages; don't redirect /services to /services/.
+DirectorySlash Off
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
-  RewriteRule ^index\.html$ - [L]
+  # Redirect old trailing-slash URLs to the canonical address (e.g. /services/ -> /services)
+  RewriteCond %{REQUEST_URI} !^/$
+  RewriteRule ^(.+)/$ /$1 [R=301,L]
+  # /services -> services.html, /services/web-development -> services/web-development.html
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ $1.html [L]
 </IfModule>
 
-# Cache hashed build assets for a year; always re-check the HTML.
+# Unknown addresses get a real 404 status (good for SEO) with the site's 404 page.
+ErrorDocument 404 /404.html
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml application/xml text/plain
+</IfModule>
+
+# Cache hashed build assets and images for a year; always re-check the HTML.
 <IfModule mod_headers.c>
-  <FilesMatch "\.(js|css|svg|png|jpg|webp|woff2)$">
+  <FilesMatch "\.(js|css|svg|png|jpg|jpeg|webp|woff2)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
   <FilesMatch "\.html$">

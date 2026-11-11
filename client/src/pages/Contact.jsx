@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Mail, MessageCircle, AlertCircle, Loader2, Clock } from 'lucide-react';
 import FormSuccess from '../components/FormSuccess';
 import Seo from '../components/Seo';
+import { breadcrumbs } from '../seo/schema';
 import { Button, PageHeader, Section } from '../components/ui';
 import { services, budgets } from '../services/content';
 import { submitLead } from '../services/api';
@@ -34,7 +35,7 @@ export default function Contact() {
 
   return (
     <>
-      <Seo title="Contact Us" description="Request a free quote from Worklancers." path="/contact" />
+      <Seo title="Contact Us: Get a Free Quote" path="/contact" image="/images/planning.jpg" description="Tell us about your website, app or software project and get a clear plan and fixed-price quote within 24 hours. Contact Worklancers by form, email or WhatsApp." jsonLd={breadcrumbs([['Home', '/'], ['Contact', '/contact']])} />
       <PageHeader image="/images/planning.jpg" eyebrow="Free quote, no obligation" title="Let's talk about your project" text="Tell us what you need. We reply within 24 hours with a clear plan and a fixed-price quote." />
       <Section>
         <div className="grid gap-10 lg:grid-cols-3">
