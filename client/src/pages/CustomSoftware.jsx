@@ -70,7 +70,7 @@ export default function CustomSoftware() {
           <div>
             <m.p initial={{ y: -8 }} animate={{ y: 0 }} className="mb-5 inline-block rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold text-sky-300 ring-1 ring-white/20">Software house · Pakistan → worldwide</m.p>
             <m.h1 initial={{ y: 24 }} animate={{ y: 0 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className="text-4xl leading-tight !text-white sm:text-5xl lg:text-6xl">
-              Custom software, <span className="text-gradient">built right</span> and delivered on time.
+              Custom Software, <span className="text-gradient">Built Right</span> and Delivered on Time.
             </m.h1>
             <m.p initial={{ y: 8 }} animate={{ y: 0 }} transition={{ delay: 0.3 }} className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300">
               From startup MVPs to SaaS platforms and internal tools: tell us your idea and get a clear plan, timeline and fixed-price estimate within 24 hours.

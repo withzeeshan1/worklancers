@@ -36,7 +36,7 @@ export default function Contact() {
   return (
     <>
       <Seo title="Contact Us: Get a Free Quote" path="/contact" image="/images/planning.webp" description="Tell us about your website, app or software project and get a clear plan and fixed-price quote within 24 hours. Contact Worklancers by form, email or WhatsApp." jsonLd={breadcrumbs([['Home', '/'], ['Contact', '/contact']])} />
-      <PageHeader image="/images/planning.webp" eyebrow="Free quote, no obligation" title="Let's talk about your project" text="Tell us what you need. We reply within 24 hours with a clear plan and a fixed-price quote." />
+      <PageHeader image="/images/planning.webp" eyebrow="Free quote, no obligation" title="Let's Talk About Your Project" text="Tell us what you need. We reply within 24 hours with a clear plan and a fixed-price quote." />
       <Section>
         <div className="grid gap-10 lg:grid-cols-3">
           <m.form initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.5 }} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5 rounded-xl2 border border-line bg-card p-6 shadow-soft sm:p-8 lg:col-span-2">

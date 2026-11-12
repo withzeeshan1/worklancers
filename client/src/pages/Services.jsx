@@ -12,7 +12,7 @@ export default function Services() {
   return (
     <>
       <Seo title="Web, App & Software Development Services" path="/services" description="Web development, custom software, mobile apps, UI/UX & branding, SEO, e-commerce and AI automation services. One team, fixed-price quotes, delivered on time." jsonLd={breadcrumbs([['Home', '/'], ['Services', '/services']])} />
-      <PageHeader eyebrow="What we do" title="Services built around one goal: growing your business" text="Pick one service or let one team handle everything, from the first sketch to your thousandth customer.">
+      <PageHeader eyebrow="What we do" title="Services Built Around One Goal: Growing Your Business" text="Pick one service or let one team handle everything, from the first sketch to your thousandth customer.">
         <div className="flex flex-wrap gap-4">
           <Button to="/contact">Get a Free Quote <ArrowRight size={16} /></Button>
           <Button to="/custom-software" variant="outline">Need custom software?</Button>

@@ -72,7 +72,7 @@ export default function Home() {
         <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
           <div className="pause-on-hover flex w-max animate-marquee gap-12">
             {[...technologies, ...technologies].map((t, i) => (
-              <span key={i} aria-hidden={i >= technologies.length} className="whitespace-nowrap text-xl font-medium tracking-tight text-white/30 transition hover:text-white/80">{t}</span>
+              <span key={i} aria-hidden={i >= technologies.length} className="whitespace-nowrap text-xl font-medium tracking-tight text-white/60 transition hover:text-white">{t}</span>
             ))}
           </div>
         </div>

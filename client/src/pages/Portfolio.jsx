@@ -14,7 +14,7 @@ export default function Portfolio() {
   return (
     <>
       <Seo title="Portfolio: Websites, Apps & Software" path="/portfolio" image="/images/developers.webp" description="Real projects by Worklancers: SaaS platforms, AI web apps, directories and mobile games including LoomySend, Loomy360, VenuesVegas and Drytis AI Studio." jsonLd={breadcrumbs([['Home', '/'], ['Portfolio', '/portfolio']])} />
-      <PageHeader image="/images/developers.webp" eyebrow="Our work" title="See what we can build for you" text="SaaS platforms, AI web apps, directories and mobile games we have designed and built. Open any project to see it live." />
+      <PageHeader image="/images/developers.webp" eyebrow="Our work" title="See What We Can Build for You" text="SaaS platforms, AI web apps, directories and mobile games we have designed and built. Open any project to see it live." />
       <Section>
         <div className="mb-10 flex flex-wrap gap-2" role="tablist" aria-label="Project categories">
           {categories.map((c) => (

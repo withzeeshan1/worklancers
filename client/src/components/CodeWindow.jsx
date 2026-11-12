@@ -18,7 +18,7 @@ export default function CodeWindow() {
       className="relative mx-auto w-full max-w-lg overflow-hidden rounded-2xl bg-[#0B1220] shadow-2xl shadow-primary/30 ring-1 ring-white/10">
       <div className="flex items-center gap-1.5 border-b border-white/10 px-4 py-3">
         <span className="h-2.5 w-2.5 rounded-full bg-red-400" /><span className="h-2.5 w-2.5 rounded-full bg-amber-400" /><span className="h-2.5 w-2.5 rounded-full bg-green-400" />
-        <span className="ml-3 text-xs text-slate-500">app.js</span>
+        <span className="ml-3 text-xs text-slate-400">app.js</span>
       </div>
       <pre className="overflow-hidden p-5 font-mono text-[13px] leading-7">
         {lines.map((parts, i) => (

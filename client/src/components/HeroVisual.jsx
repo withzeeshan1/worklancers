@@ -40,7 +40,7 @@ export default function HeroVisual() {
         className="absolute inset-x-0 top-0 z-10 mx-auto w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-card shadow-2xl shadow-violet-900/40 md:w-[62%]">
         <div className="flex items-center gap-1.5 border-b border-line bg-white/[0.03] px-4 py-3">
           <span className="h-2.5 w-2.5 rounded-full bg-red-400" /><span className="h-2.5 w-2.5 rounded-full bg-amber-400" /><span className="h-2.5 w-2.5 rounded-full bg-green-400" />
-          <span className="ml-3 flex h-6 flex-1 items-center rounded-md bg-white/[0.04] px-3 text-[11px] text-muted">app.yourbusiness.com/dashboard</span>
+          <span className="ml-3 flex h-6 flex-1 items-center rounded-md bg-white/[0.04] px-3 text-[11px] text-slate-400">app.yourbusiness.com/dashboard</span>
         </div>
         <div className="relative aspect-[16/10] overflow-hidden">
           <img src="/images/hero-dashboard.webp" alt="" width={1200} height={750} loading="eager" className="h-full w-full animate-kenburns object-cover" />
@@ -55,7 +55,7 @@ export default function HeroVisual() {
       <m.div initial={{ opacity: 0, y: 40, rotate: 0 }} animate={{ opacity: 1, y: 0, rotate: -4 }} transition={{ duration: 0.9, delay: 1.3, ease }}
         className="absolute bottom-0 left-[8%] z-20 hidden w-[22%] overflow-hidden rounded-xl border border-white/10 bg-card p-1 shadow-2xl shadow-black/60 lg:block">
         <img src="/images/hero-wireframes.webp" alt="" width={1000} height={750} loading="lazy" className="aspect-[4/3] w-full rounded-lg object-cover" />
-        <p className="px-2 py-1.5 text-left text-[11px] text-muted">UX wireframes · <span className="text-violet-300">in review</span></p>
+        <p className="px-2 py-1.5 text-left text-[11px] text-slate-400">UX wireframes · <span className="text-violet-300">in review</span></p>
       </m.div>
 
       {/* floating stat chips */}

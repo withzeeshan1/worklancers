@@ -33,7 +33,7 @@ export default function ProjectDetail() {
               <figure className="overflow-hidden rounded-xl2 border border-line bg-card shadow-2xl shadow-black/40">
                 <div className="flex items-center gap-1.5 border-b border-line bg-white/[0.03] px-4 py-3" aria-hidden="true">
                   <span className="h-2.5 w-2.5 rounded-full bg-red-400" /><span className="h-2.5 w-2.5 rounded-full bg-amber-400" /><span className="h-2.5 w-2.5 rounded-full bg-green-400" />
-                  <span className="ml-3 flex h-6 flex-1 items-center rounded-md bg-white/[0.04] px-3 text-[11px] text-muted">{hostOf(p.liveUrl || p.title)}</span>
+                  <span className="ml-3 flex h-6 flex-1 items-center rounded-md bg-white/[0.04] px-3 text-[11px] text-slate-400">{hostOf(p.liveUrl || p.title)}</span>
                 </div>
                 <img src={p.image} alt={`${p.title} home page`} width={1200} height={750} className="w-full" />
               </figure>

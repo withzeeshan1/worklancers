@@ -14,7 +14,7 @@ function seoFiles(siteUrl) {
     apply: (_config, env) => env.command === 'build' && !env.isSsrBuild,
     generateBundle() {
       this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: sitemap })
-      this.emitFile({ type: 'asset', fileName: 'robots.txt', source: `User-agent: *\nAllow: /\nDisallow: /logo-options.html\n\nSitemap: ${url}/sitemap.xml\n` })
+      this.emitFile({ type: 'asset', fileName: 'robots.txt', source: `User-agent: *\nAllow: /\n\nSitemap: ${url}/sitemap.xml\n` })
     },
   }
 }
