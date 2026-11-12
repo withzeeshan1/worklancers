@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Gamepad2, Globe } from 'lucide-react';
+import AppIconCover from './AppIconCover';
 
 // Each project gets a distinct gradient "cover" until real screenshots are added.
 const covers = ['from-violet-600 via-fuchsia-500 to-orange-400', 'from-sky-500 via-indigo-500 to-violet-600', 'from-emerald-400 via-teal-500 to-sky-600', 'from-pink-500 via-rose-500 to-amber-400', 'from-indigo-600 via-violet-500 to-sky-400', 'from-cyan-400 via-sky-500 to-indigo-600'];
@@ -16,6 +17,7 @@ export default function ProjectCard({ project }) {
       <div className={`relative grid h-52 place-items-center overflow-hidden rounded-[1rem] bg-gradient-to-br ${coverFor(project.slug)}`}>
         {project.image
           ? <img src={project.image} alt="" aria-hidden="true" width={1000} height={667} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110" />
+          : project.icon ? <AppIconCover icon={project.icon} title={project.title} />
           : (
             <span className="relative flex flex-col items-center gap-3 text-white" aria-hidden="true">
               <span className="grid h-14 w-14 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/30 backdrop-blur">

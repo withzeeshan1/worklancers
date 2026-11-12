@@ -4,6 +4,7 @@ import Seo from '../components/Seo';
 import { breadcrumbs } from '../seo/schema';
 import Reveal from '../components/Reveal';
 import ProjectCard from '../components/ProjectCard';
+import AppIconCover from '../components/AppIconCover';
 import CtaBanner from '../components/CtaBanner';
 import NotFound from './NotFound';
 import { Button, PageHeader, Section, SectionHeading } from '../components/ui';
@@ -20,7 +21,7 @@ export default function ProjectDetail() {
   const more = projects.filter((x) => x.slug !== p.slug && x.type === p.type).slice(0, 3);
   return (
     <>
-      <Seo title={`${p.title}: ${p.category} Project`} description={p.description} path={`/portfolio/${p.slug}`} image={p.image || undefined}
+      <Seo title={`${p.title}: ${p.category} Project`} description={p.description} path={`/portfolio/${p.slug}`} image={p.image || (p.icon && !p.icon.endsWith('.svg') ? p.icon : undefined)}
         jsonLd={breadcrumbs([['Home', '/'], ['Portfolio', '/portfolio'], [p.title, `/portfolio/${p.slug}`]])} />
       <PageHeader image="/images/developers.webp" eyebrow={p.category} title={p.title} text={p.description}>
         {p.liveUrl && <Button href={p.liveUrl}>Visit {hostOf(p.liveUrl)} <ExternalLink size={16} /></Button>}
@@ -36,6 +37,8 @@ export default function ProjectDetail() {
                 </div>
                 <img src={p.image} alt={`${p.title} home page`} width={1200} height={750} className="w-full" />
               </figure>
+            ) : p.icon ? (
+              <div className="group relative h-72 overflow-hidden rounded-xl2 border border-line bg-card sm:h-96"><AppIconCover icon={p.icon} title={p.title} size="lg" /></div>
             ) : (
               <div className="grid h-72 place-items-center overflow-hidden rounded-xl2 bg-gradient-to-br from-violet-700 via-indigo-600 to-sky-500 sm:h-96" aria-hidden="true">
                 <span className="flex flex-col items-center gap-4 text-white">
