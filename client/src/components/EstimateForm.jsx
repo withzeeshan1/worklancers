@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { ArrowRight, AlertCircle, Loader2 } from 'lucide-react';
 import FormSuccess from './FormSuccess';
 import { submitLead } from '../services/api';
@@ -34,12 +34,12 @@ export default function EstimateForm({ projectTypes }) {
     <div className="rounded-[1.5rem] border border-line bg-card p-6 shadow-soft sm:p-8">
       <AnimatePresence mode="wait">
         {status?.ok ? (
-          <motion.div key="done" className="py-6">
+          <m.div key="done" className="py-6">
             <h3 className="mb-4 text-center text-xl">Thanks! We've got your project details.</h3>
             <FormSuccess result={status.result} sentText="Expect a reply with next steps within 24 hours." whatsappText="Hi Worklancers, I just sent a custom software estimate request." />
-          </motion.div>
+          </m.div>
         ) : (
-          <motion.form key="form" exit={{ opacity: 0 }} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
+          <m.form key="form" exit={{ opacity: 0 }} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="text-sm font-medium text-fg">Your name
                 <input className={field} {...register('fullName', { required: 'Please enter your name', minLength: { value: 2, message: 'Name is too short' } })} /><Err e={errors.fullName} /></label>
@@ -59,13 +59,13 @@ export default function EstimateForm({ projectTypes }) {
             <label className="block text-sm font-medium text-fg">Tell us about the project
               <textarea rows={4} placeholder="What should the software do, who will use it, and is there a deadline?" className={field}
                 {...register('details', { required: 'Please describe the project', minLength: { value: 20, message: 'A sentence or two is enough (20+ characters)' }, maxLength: { value: 3800, message: 'Please keep it under 3,800 characters' } })} /><Err e={errors.details} /></label>
-            <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" disabled={isSubmitting}
+            <m.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" disabled={isSubmitting}
               className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-b from-violet-500 to-violet-700 px-6 py-3.5 text-sm font-medium text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_8px_30px_-6px_rgb(139_92_246/0.6)] transition hover:brightness-110 disabled:opacity-60">
               {isSubmitting ? <><Loader2 size={16} className="animate-spin" /> Sending…</> : <>Get my free estimate <ArrowRight size={16} /></>}
-            </motion.button>
+            </m.button>
             <p className="text-center text-xs text-muted">We're happy to sign an NDA before you share details.</p>
             {status && !status.ok && <p role="alert" className="flex items-start gap-2 rounded-xl bg-red-500/10 ring-1 ring-red-500/20 px-4 py-3 text-sm text-red-300"><AlertCircle size={18} className="shrink-0" />{status.msg}</p>}
-          </motion.form>
+          </m.form>
         )}
       </AnimatePresence>
     </div>

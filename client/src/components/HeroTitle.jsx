@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, m, useReducedMotion } from 'framer-motion';
 
 const WORDS = ['Web Apps', 'Mobile Apps', 'SaaS Products', 'AI Agents', 'Online Stores'];
 const ease = [0.22, 1, 0.36, 1];
@@ -9,10 +9,10 @@ function Letters({ text, delay = 0, className = '' }) {
   return (
     <span className={`inline-block whitespace-nowrap ${className}`}>
       {[...text].map((ch, i) => (
-        <motion.span key={i} className="inline-block" initial={{ opacity: 0, y: '0.5em', filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        <m.span key={i} className="inline-block" initial={{ opacity: 0, y: '0.5em', filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.5, delay: delay + i * 0.03, ease }}>
           {ch === ' ' ? ' ' : ch}
-        </motion.span>
+        </m.span>
       ))}
     </span>
   );
@@ -33,18 +33,18 @@ function RotatingWord() {
   return (
     <span className="relative inline-flex justify-center px-[0.08em] align-bottom">
       <AnimatePresence mode="wait" initial={false}>
-        <motion.span key={word} className="accent text-gradient inline-block whitespace-nowrap pb-[0.26em] pr-[0.06em] [text-shadow:none]"
+        <m.span key={word} className="accent text-gradient inline-block whitespace-nowrap pb-[0.26em] pr-[0.06em] [text-shadow:none]"
           exit={{ opacity: 0, y: '-0.4em', filter: 'blur(10px)', transition: { duration: 0.35, ease } }}>
           {[...word].map((ch, i) => (
-            <motion.span key={i} className="inline-block" initial={{ opacity: 0, y: '0.6em', rotateX: -80, filter: 'blur(6px)' }}
+            <m.span key={i} className="inline-block" initial={{ opacity: 0, y: '0.6em', rotateX: -80, filter: 'blur(6px)' }}
               animate={{ opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' }} transition={{ duration: 0.5, delay: 0.9 * (index === 0 ? 1 : 0) + i * 0.035, ease }}>
               {ch === ' ' ? ' ' : ch}
-            </motion.span>
+            </m.span>
           ))}
-        </motion.span>
+        </m.span>
       </AnimatePresence>
       {/* glowing underline that redraws for every new word */}
-      <motion.span key={`line-${word}`} aria-hidden="true" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.7, delay: 0.25 + (index === 0 ? 0.9 : 0), ease }}
+      <m.span key={`line-${word}`} aria-hidden="true" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.7, delay: 0.25 + (index === 0 ? 0.9 : 0), ease }}
         className="absolute inset-x-[4%] bottom-[0.02em] h-[3px] origin-left rounded-full bg-gradient-to-r from-violet-400 via-fuchsia-300 to-sky-400 shadow-[0_0_16px_rgb(167_139_250/0.9)]" />
     </span>
   );

@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import Seo from '../components/Seo';
@@ -19,10 +19,21 @@ export default function BlogDetail() {
       <Seo title={p.title} description={p.excerpt} path={`/blog/${p.slug}`} type="article" jsonLd={[blogPosting(p), breadcrumbs([['Home', '/'], ['Blog', '/blog'], [p.title, `/blog/${p.slug}`]])]} />
       <Section>
         <article className="mx-auto max-w-3xl">
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="inline-block rounded-full bg-primary-light px-3 py-1 text-sm font-semibold text-violet-300">{p.category}</motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="mt-3 text-3xl sm:text-4xl">{p.title}</motion.h1>
+          <m.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="inline-block rounded-full bg-primary-light px-3 py-1 text-sm font-semibold text-violet-300">{p.category}</m.p>
+          <m.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="mt-3 text-3xl sm:text-4xl">{p.title}</m.h1>
           <p className="mt-3 text-sm text-muted">By {p.author} · <time dateTime={p.publishedAt}>{formatDate(p.publishedAt)}</time></p>
-          <div className="mt-8 space-y-5 text-lg leading-relaxed">{p.content.map((para, i) => <Reveal as="p" key={i} delay={0.05 * i}>{para}</Reveal>)}</div>
+          <div className="mt-8 space-y-5 text-lg leading-relaxed text-ink">
+            {/* content blocks: "text" = paragraph, { h: '...' } = subheading, { list: [...] } = bullet list */}
+            {p.content.map((block, i) => {
+              if (typeof block === 'string') return <p key={i}>{block}</p>;
+              if (block.h) return <h2 key={i} className="!mt-12 text-2xl sm:text-3xl">{block.h}</h2>;
+              return (
+                <ul key={i} className="space-y-3 pl-1">
+                  {block.list.map((item) => <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-400" />{item}</li>)}
+                </ul>
+              );
+            })}
+          </div>
           <Reveal>
             <div className="mt-12 rounded-xl2 bg-gradient-to-r from-primary to-sky-500 p-6 text-white sm:p-8">
               <p className="text-xl font-semibold">Want us to handle this for you?</p>

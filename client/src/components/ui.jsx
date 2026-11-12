@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import FadeImage from './FadeImage';
 
@@ -38,7 +38,7 @@ export function SectionHeading({ eyebrow, title, text, center = true }) {
   );
 }
 
-export function PageHeader({ title, text, eyebrow, children, image = '/images/code-screen.jpg' }) {
+export function PageHeader({ title, text, eyebrow, children, image = '/images/code-screen.webp' }) {
   return (
     <div className="relative -mt-24 overflow-hidden pt-24">
       {image && <FadeImage priority src={image} overlay="bg-gradient-to-r from-surface via-surface/75 to-transparent" />}
@@ -46,11 +46,11 @@ export function PageHeader({ title, text, eyebrow, children, image = '/images/co
       <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]" aria-hidden="true" />
       <div className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/25 blur-[120px]" aria-hidden="true" />
       <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-20 sm:px-6 sm:pb-20 sm:pt-28 lg:px-8">
-        {eyebrow && <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}><Eyebrow>{eyebrow}</Eyebrow></motion.div>}
-        <motion.h1 initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-4xl text-4xl leading-[1.05] sm:text-6xl">{title}</motion.h1>
-        {text && <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{text}</motion.p>}
-        {children && <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="mt-10">{children}</motion.div>}
+        {eyebrow && <m.div initial={{ y: -8 }} animate={{ y: 0 }}><Eyebrow>{eyebrow}</Eyebrow></m.div>}
+        <m.h1 initial={{ y: 24 }} animate={{ y: 0 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-4xl text-4xl leading-[1.05] sm:text-6xl">{title}</m.h1>
+        {text && <m.p initial={{ y: 16 }} animate={{ y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{text}</m.p>}
+        {children && <m.div initial={{ y: 16 }} animate={{ y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="mt-10">{children}</m.div>}
       </div>
     </div>
   );

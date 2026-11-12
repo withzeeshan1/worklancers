@@ -15,7 +15,7 @@ export default {
         muted: '#7E8090', // secondary text
       },
       fontFamily: {
-        sans: ['Geist', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['"Geist Variable"', 'Geist', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         serif: ['"Instrument Serif"', 'ui-serif', 'Georgia', 'serif'],
         mono: ['"Geist Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },

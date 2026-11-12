@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowUpRight, MessageCircle } from 'lucide-react';
 import { Button } from './ui';
 import FadeImage from './FadeImage';
@@ -8,9 +8,9 @@ export default function CtaBanner() {
   return (
     <section className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        <m.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="relative overflow-hidden rounded-[2rem] border border-line bg-card px-6 py-20 text-center sm:px-12">
-          <FadeImage src="/images/cta-code.jpg" overlay="bg-black/60" />
+          <FadeImage src="/images/cta-code.webp" overlay="bg-black/60" />
           <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" aria-hidden="true" />
           <div className="pointer-events-none absolute left-1/2 top-full h-80 w-[700px] -translate-x-1/2 -translate-y-1/2 animate-blob rounded-full bg-violet-600/40 blur-[100px]" aria-hidden="true" />
           <div className="relative">
@@ -21,7 +21,7 @@ export default function CtaBanner() {
               <Button href={whatsappLink()} variant="outline"><MessageCircle size={16} className="text-[#25D366]" /> Chat on WhatsApp</Button>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { Plus } from 'lucide-react';
 
 export default function Faq({ items }) {
@@ -14,9 +14,9 @@ export default function Faq({ items }) {
           </button>
           <AnimatePresence initial={false}>
             {open === i && (
-              <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: 'easeInOut' }} className="overflow-hidden">
+              <m.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: 'easeInOut' }} className="overflow-hidden">
                 <p className="px-6 pb-5 text-muted leading-relaxed">{f.a}</p>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>

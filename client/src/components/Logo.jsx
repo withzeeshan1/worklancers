@@ -23,6 +23,8 @@ export default function Logo({ variant = 'navbar', className = '' }) {
       <img
         src={worklancerLogo}
         alt="Worklancer"
+        width={481}
+        height={68}
         className={`${heightClass} w-auto object-contain transition duration-300 group-hover:opacity-90`}
       />
     </span>

@@ -12,8 +12,8 @@ const expertise = ['Web & MERN development', 'Custom software & SaaS', 'Mobile a
 export default function About() {
   return (
     <>
-      <Seo title="About Us: Software House in Pakistan" path="/about" image="/images/dev-team.jpg" description="Worklancers is a software house and digital agency in Pakistan. One accountable team for web, software, mobile apps, design and marketing. Our story and values." jsonLd={breadcrumbs([['Home', '/'], ['About', '/about']])} />
-      <PageHeader image="/images/dev-team.jpg" eyebrow="About us" title="A software house that builds like a partner, not a vendor" text="We help businesses build, design and grow online with one accountable team." />
+      <Seo title="About Us: Software House in Pakistan" path="/about" image="/images/dev-team.webp" description="Worklancers is a software house and digital agency in Pakistan. One accountable team for web, software, mobile apps, design and marketing. Our story and values." jsonLd={breadcrumbs([['Home', '/'], ['About', '/about']])} />
+      <PageHeader image="/images/dev-team.webp" eyebrow="About us" title="A software house that builds like a partner, not a vendor" text="We help businesses build, design and grow online with one accountable team." />
       <Section>
         <div className="grid gap-10 lg:grid-cols-2">
           <Reveal from="right"><h2 className="text-2xl sm:text-3xl">Our story</h2>

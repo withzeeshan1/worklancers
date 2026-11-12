@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Mail, MessageCircle, AlertCircle, Loader2, Clock } from 'lucide-react';
 import FormSuccess from '../components/FormSuccess';
 import Seo from '../components/Seo';
@@ -35,11 +35,11 @@ export default function Contact() {
 
   return (
     <>
-      <Seo title="Contact Us: Get a Free Quote" path="/contact" image="/images/planning.jpg" description="Tell us about your website, app or software project and get a clear plan and fixed-price quote within 24 hours. Contact Worklancers by form, email or WhatsApp." jsonLd={breadcrumbs([['Home', '/'], ['Contact', '/contact']])} />
-      <PageHeader image="/images/planning.jpg" eyebrow="Free quote, no obligation" title="Let's talk about your project" text="Tell us what you need. We reply within 24 hours with a clear plan and a fixed-price quote." />
+      <Seo title="Contact Us: Get a Free Quote" path="/contact" image="/images/planning.webp" description="Tell us about your website, app or software project and get a clear plan and fixed-price quote within 24 hours. Contact Worklancers by form, email or WhatsApp." jsonLd={breadcrumbs([['Home', '/'], ['Contact', '/contact']])} />
+      <PageHeader image="/images/planning.webp" eyebrow="Free quote, no obligation" title="Let's talk about your project" text="Tell us what you need. We reply within 24 hours with a clear plan and a fixed-price quote." />
       <Section>
         <div className="grid gap-10 lg:grid-cols-3">
-          <motion.form initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.5 }} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5 rounded-xl2 border border-line bg-card p-6 shadow-soft sm:p-8 lg:col-span-2">
+          <m.form initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.5 }} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5 rounded-xl2 border border-line bg-card p-6 shadow-soft sm:p-8 lg:col-span-2">
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="text-sm font-medium text-fg">Full Name
                 <input className={field} {...register('fullName', { required: 'Full name is required', minLength: { value: 2, message: 'Name is too short' } })} /><Err e={errors.fullName} /></label>
@@ -65,8 +65,8 @@ export default function Contact() {
             {status && !status.ok && (
               <p role="alert" className="flex items-start gap-2 rounded-xl bg-red-500/10 ring-1 ring-red-500/20 px-4 py-3 text-sm text-red-300"><AlertCircle size={18} className="shrink-0" />{status.msg}</p>
             )}
-          </motion.form>
-          <motion.aside initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.35, duration: 0.5 }} className="space-y-4">
+          </m.form>
+          <m.aside initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.35, duration: 0.5 }} className="space-y-4">
             <a href={whatsappLink()} target="_blank" rel="noreferrer" className="flex items-center gap-3 rounded-xl2 border border-line bg-card p-5 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-primary">
               <MessageCircle className="text-violet-300" /><div><p className="font-semibold text-fg">WhatsApp</p><p className="text-sm text-muted">Chat with us directly</p></div></a>
             <a href={`mailto:${SITE.email}`} className="flex items-center gap-3 rounded-xl2 border border-line bg-card p-5 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-primary">
@@ -79,7 +79,7 @@ export default function Contact() {
                 ))}
               </ol>
             </div>
-          </motion.aside>
+          </m.aside>
         </div>
       </Section>
     </>

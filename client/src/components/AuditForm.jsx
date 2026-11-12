@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { ArrowRight, AlertCircle, Loader2, Gift } from 'lucide-react';
 import FormSuccess from './FormSuccess';
 import { submitLead } from '../services/api';
@@ -38,9 +38,9 @@ export default function AuditForm({ dark = false }) {
 
       <AnimatePresence mode="wait">
         {status?.ok ? (
-          <motion.div key="done"><FormSuccess result={status.result} sentText="We will email your audit within 24 hours." whatsappText="Hi Worklancers, I just requested a free website audit." /></motion.div>
+          <m.div key="done"><FormSuccess result={status.result} sentText="We will email your audit within 24 hours." whatsappText="Hi Worklancers, I just requested a free website audit." /></m.div>
         ) : (
-          <motion.form key="form" exit={{ opacity: 0 }} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-3">
+          <m.form key="form" exit={{ opacity: 0 }} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-3">
             <div>
               <label htmlFor="audit-name" className="sr-only">Your name</label>
               <input id="audit-name" placeholder="Your name" className={field} {...register('fullName', { required: 'Please enter your name', minLength: { value: 2, message: 'Name is too short' } })} />
@@ -56,12 +56,12 @@ export default function AuditForm({ dark = false }) {
               <input id="audit-site" placeholder="Your website (leave blank if you don't have one)" className={field} {...register('website', { maxLength: { value: 200, message: 'That address is too long' } })} />
               {errors.website && <p className="mt-1 text-xs text-red-400" role="alert">{errors.website.message}</p>}
             </div>
-            <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" disabled={isSubmitting}
+            <m.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" disabled={isSubmitting}
               className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-b from-violet-500 to-violet-700 px-6 py-3.5 text-sm font-medium text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_8px_30px_-6px_rgb(139_92_246/0.6)] transition hover:brightness-110 disabled:opacity-60">
               {isSubmitting ? <><Loader2 size={16} className="animate-spin" /> Sending…</> : <>Send me my free audit <ArrowRight size={16} /></>}
-            </motion.button>
+            </m.button>
             {status && !status.ok && <p role="alert" className="flex items-start gap-2 rounded-xl bg-red-500/10 ring-1 ring-red-500/20 px-4 py-3 text-sm text-red-300"><AlertCircle size={18} className="shrink-0" />{status.msg}</p>}
-          </motion.form>
+          </m.form>
         )}
       </AnimatePresence>
     </div>

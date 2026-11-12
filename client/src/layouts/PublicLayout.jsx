@@ -1,7 +1,9 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { Suspense, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { MotionConfig, motion, useScroll, useSpring } from 'framer-motion';
+import { LazyMotion, MotionConfig, domMax, m, useScroll, useSpring } from 'framer-motion';
+
+// Animation features load in their own file after first render, keeping the startup bundle small.
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
@@ -36,18 +38,20 @@ export default function PublicLayout() {
 
   return (
     // reducedMotion="user" turns off transform animations for visitors who ask for less motion.
-    <MotionConfig reducedMotion="user">
-      <Helmet><script type="application/ld+json">{JSON.stringify(organization())}</script></Helmet>
-      <div className="flex min-h-screen flex-col">
-        <motion.div className="fixed inset-x-0 top-0 z-[60] h-0.5 origin-left bg-gradient-to-r from-violet-500 via-fuchsia-400 to-sky-400" style={{ scaleX: progress }} aria-hidden="true" />
-        <Navbar />
-        <motion.main key={pathname} className="flex-1" initial={pathname === landingPath ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, ease: 'easeOut' }}>
-          {/* pages are loaded on demand; the pre-rendered HTML stays on screen until the page code arrives */}
-          <Suspense fallback={null}><Outlet /></Suspense>
-        </motion.main>
-        <Footer />
-        <WhatsAppButton />
-      </div>
-    </MotionConfig>
+    <LazyMotion features={domMax} strict>
+      <MotionConfig reducedMotion="user">
+        <Helmet><script type="application/ld+json">{JSON.stringify(organization())}</script></Helmet>
+        <div className="flex min-h-screen flex-col">
+          <m.div className="fixed inset-x-0 top-0 z-[60] h-0.5 origin-left bg-gradient-to-r from-violet-500 via-fuchsia-400 to-sky-400" style={{ scaleX: progress }} aria-hidden="true" />
+          <Navbar />
+          <m.main key={pathname} className="flex-1" initial={pathname === landingPath ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, ease: 'easeOut' }}>
+            {/* pages are loaded on demand; the pre-rendered HTML stays on screen until the page code arrives */}
+            <Suspense fallback={null}><Outlet /></Suspense>
+          </m.main>
+          <Footer />
+          <WhatsAppButton />
+        </div>
+      </MotionConfig>
+    </LazyMotion>
   );
 }

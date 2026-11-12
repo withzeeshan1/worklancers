@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { Button } from './ui';
 import Logo from './Logo';
@@ -31,7 +31,7 @@ export default function Navbar() {
             <NavLink key={to} to={to} end={to === '/'} className={({ isActive }) => `relative rounded-full px-3.5 py-1.5 text-sm font-medium transition ${isActive ? 'text-white' : 'text-slate-300 hover:text-white'}`}>
               {({ isActive }) => (
                 <>
-                  {isActive && <motion.span layoutId="nav-pill" className="absolute inset-0 rounded-full bg-white/[0.12] ring-1 ring-white/15" transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
+                  {isActive && <m.span layoutId="nav-pill" className="absolute inset-0 rounded-full bg-white/[0.12] ring-1 ring-white/15" transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
                   <span className="relative">{label}</span>
                 </>
               )}
@@ -47,18 +47,18 @@ export default function Navbar() {
       </nav>
       <AnimatePresence>
         {open && (
-          <motion.div initial={{ opacity: 0, y: -10, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -10, scale: 0.98 }}
+          <m.div initial={{ opacity: 0, y: -10, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -10, scale: 0.98 }}
             className="mx-auto mt-2 max-w-6xl rounded-3xl border border-line bg-surface/90 p-4 shadow-soft backdrop-blur-xl lg:hidden">
             <div className="flex flex-col">
               {links.map(([to, label], i) => (
-                <motion.div key={to} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}>
+                <m.div key={to} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}>
                   <NavLink to={to} end={to === '/'} onClick={() => setOpen(false)}
                     className={({ isActive }) => `block rounded-xl px-4 py-3 text-base font-medium ${isActive ? 'bg-white/[0.08] text-white' : 'text-slate-300'}`}>{label}</NavLink>
-                </motion.div>
+                </m.div>
               ))}
               <Button to="/contact" onClick={() => setOpen(false)} className="mt-3">Start a project</Button>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </header>

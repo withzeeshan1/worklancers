@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowRight, Check, MessageCircle, Rocket, Layers, LayoutDashboard, Wrench, Smartphone, Bot, Briefcase, Users, Handshake, Clock, ShieldCheck, Globe2, BadgeDollarSign } from 'lucide-react';
 import Seo from '../components/Seo';
 import { breadcrumbs, faqPage, serviceSchema } from '../seo/schema';
@@ -58,30 +58,30 @@ const faqs = [
 export default function CustomSoftware() {
   return (
     <>
-      <Seo title="Custom Software Development Company" path="/custom-software" image="/images/software-code.jpg" description="Custom software development: MVPs, SaaS platforms, web apps, mobile apps and AI integrations. Fixed-price projects, dedicated developers and white-label work."
+      <Seo title="Custom Software Development Company" path="/custom-software" image="/images/software-code.webp" description="Custom software development: MVPs, SaaS platforms, web apps, mobile apps and AI integrations. Fixed-price projects, dedicated developers and white-label work."
         jsonLd={[serviceSchema({ name: 'Custom Software Development', description: 'MVPs, SaaS platforms, web apps, internal tools, mobile apps and AI/API integrations.', path: '/custom-software', offers: builds.map((b) => b.title) }), faqPage(faqs), breadcrumbs([['Home', '/'], ['Custom Software', '/custom-software']])]} />
       {/* HERO */}
       <section className="relative -mt-20 overflow-hidden bg-panel pt-20">
-        <FadeImage priority src="/images/software-code.jpg" overlay="bg-gradient-to-r from-panel via-panel/80 to-panel/10" />
+        <FadeImage priority src="/images/software-code.webp" overlay="bg-gradient-to-r from-panel via-panel/80 to-panel/10" />
         <div className="pointer-events-none absolute -left-32 top-0 h-[28rem] w-[28rem] animate-blob rounded-full bg-primary/40 blur-3xl" aria-hidden="true" />
         <div className="pointer-events-none absolute -right-24 bottom-0 h-96 w-96 animate-blob rounded-full bg-sky-500/20 blur-3xl [animation-delay:5s]" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:48px_48px]" aria-hidden="true" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-28">
           <div>
-            <motion.p initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="mb-5 inline-block rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold text-sky-300 ring-1 ring-white/20">Software house · Pakistan → worldwide</motion.p>
-            <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className="text-4xl leading-tight !text-white sm:text-5xl lg:text-6xl">
+            <m.p initial={{ y: -8 }} animate={{ y: 0 }} className="mb-5 inline-block rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold text-sky-300 ring-1 ring-white/20">Software house · Pakistan → worldwide</m.p>
+            <m.h1 initial={{ y: 24 }} animate={{ y: 0 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className="text-4xl leading-tight !text-white sm:text-5xl lg:text-6xl">
               Custom software, <span className="text-gradient">built right</span> and delivered on time.
-            </motion.h1>
-            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300">
+            </m.h1>
+            <m.p initial={{ y: 8 }} animate={{ y: 0 }} transition={{ delay: 0.3 }} className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300">
               From startup MVPs to SaaS platforms and internal tools: tell us your idea and get a clear plan, timeline and fixed-price estimate within 24 hours.
-            </motion.p>
-            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="mt-8 flex flex-wrap gap-4">
+            </m.p>
+            <m.div initial={{ y: 16 }} animate={{ y: 0 }} transition={{ delay: 0.5 }} className="mt-8 flex flex-wrap gap-4">
               <Button href="#estimate" target="_self" className="shadow-lg shadow-primary/40">Get a Free Estimate <ArrowRight size={16} /></Button>
               <Button href={whatsappLink('Hello Worklancers, I would like to discuss a software project.')} variant="light"><MessageCircle size={16} className="text-[#25D366]" /> Talk on WhatsApp</Button>
-            </motion.div>
-            <motion.ul initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }} className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300">
+            </m.div>
+            <m.ul initial={{ y: 8 }} animate={{ y: 0 }} transition={{ delay: 0.7 }} className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300">
               {['NDA on request', 'You own the code', 'Fixed-price or monthly'].map((t) => <li key={t} className="flex items-center gap-1.5"><Check size={16} className="text-emerald-400" />{t}</li>)}
-            </motion.ul>
+            </m.ul>
           </div>
           <CodeWindow />
         </div>
@@ -153,8 +153,8 @@ export default function CustomSoftware() {
                 <p className="text-sm font-semibold uppercase tracking-wider text-violet-300">{group}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {items.map((t, j) => (
-                    <motion.span key={t} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 + j * 0.06 }}
-                      className="rounded-full border border-line bg-card px-3 py-1.5 text-sm text-fg transition hover:border-primary hover:text-violet-300">{t}</motion.span>
+                    <m.span key={t} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 + j * 0.06 }}
+                      className="rounded-full border border-line bg-card px-3 py-1.5 text-sm text-fg transition hover:border-primary hover:text-violet-300">{t}</m.span>
                   ))}
                 </div>
               </div>
@@ -169,8 +169,8 @@ export default function CustomSoftware() {
         <ol className="relative mx-auto max-w-3xl space-y-8 border-l-2 border-primary/20 pl-8">
           {steps.map(([title, text], i) => (
             <Reveal as="li" key={title} delay={i * 0.12} from="left" className="relative">
-              <motion.span initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ type: 'spring', delay: 0.2 + i * 0.12 }}
-                className="absolute -left-[3.19rem] top-0 grid h-9 w-9 place-items-center rounded-full bg-primary text-sm font-bold text-white shadow-lg shadow-primary/30 ring-4 ring-surface">{i + 1}</motion.span>
+              <m.span initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ type: 'spring', delay: 0.2 + i * 0.12 }}
+                className="absolute -left-[3.19rem] top-0 grid h-9 w-9 place-items-center rounded-full bg-primary text-sm font-bold text-white shadow-lg shadow-primary/30 ring-4 ring-surface">{i + 1}</m.span>
               <h3 className="text-xl">{title}</h3><p className="mt-1 text-muted">{text}</p>
             </Reveal>
           ))}
