@@ -19,12 +19,17 @@ HTML/CSS/JS that you can upload to any web host.
 - `VITE_WEB3FORMS_KEY`: free key from https://web3forms.com (sign up with the email that should receive leads).
   With a key, every form (contact, free audit, software estimate) is emailed to you.
   Without a key, the forms show a "Send on WhatsApp" button with the visitor's details pre-filled.
-- `VITE_RECAPTCHA_SITE_KEY`: Google reCAPTCHA **v3** site key (public; a default is set in `src/utils/config.js`).
-  All three forms send a reCAPTCHA token with each submission. To make Web3Forms actually check it:
-  1. In the Google reCAPTCHA admin (https://www.google.com/recaptcha/admin), list your live domain
+- `VITE_RECAPTCHA_ENABLED` (default `false`) and `VITE_RECAPTCHA_SITE_KEY`: Google reCAPTCHA **v3** on all three forms.
+  **Only works with Web3Forms Pro:** on the free plan Web3Forms refuses every submission that carries a
+  reCAPTCHA token ("You are trying to use a Pro feature"), so it is switched off by default. To turn it on:
+  1. Upgrade Web3Forms to Pro. In its dashboard open the form's Settings, choose **recaptcha** as the
+     captcha provider, paste the **secret key** and save.
+  2. In the Google reCAPTCHA admin (https://www.google.com/recaptcha/admin), list your live domain
      (and `localhost` if you want to test locally).
-  2. In the Web3Forms dashboard, open the form's Settings, choose **recaptcha** as the captcha provider,
-     paste the **secret key** and save (a Web3Forms Pro feature).
+  3. Set `VITE_RECAPTCHA_ENABLED=true` (hosting settings or `.env`) and rebuild, or change the default in
+     `src/utils/config.js`. The site key (public) has a default in the same file.
+  If Web3Forms ever answers "Pro feature" again (for example an expired plan), the form re-sends without
+  the token, so leads keep arriving.
   **Never put the secret key in `.env` or anywhere in this repository:** everything in the site's code is public.
   If reCAPTCHA can't load (ad blocker) or flags a visitor, the form hands their message to WhatsApp instead.
 
