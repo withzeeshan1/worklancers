@@ -1,14 +1,20 @@
 import { SITE, whatsappLink } from '../utils/config';
+import { getRecaptchaToken, recaptchaEnabled } from './recaptcha';
 
 // Static-site lead handling, no backend needed.
 // - With VITE_WEB3FORMS_KEY set, submissions are emailed to you via Web3Forms (free: https://web3forms.com).
 // - Without a key, nothing is sent; the form instead offers a WhatsApp link with the message pre-filled.
 //
 // Abuse protection (in addition to Web3Forms' own server-side checks):
+// - Google reCAPTCHA v3: every submission carries a fresh token, verified by Web3Forms with the
+//   secret key saved in its dashboard (see services/recaptcha.js)
 // - honeypot: a hidden `botcheck` field only bots fill in
 // - speed trap: forms completed faster than a human could are treated as bots
 // - throttle: one submission per browser tab every THROTTLE_MS
 // - every field is cleaned of control characters and capped in length
+//
+// A real visitor is never stuck: if reCAPTCHA can't load (ad blocker, network) or rejects them,
+// the form hands their message over to WhatsApp instead of losing the lead.
 
 const LABELS = { fullName: 'Name', email: 'Email', phone: 'Phone', companyName: 'Company', service: 'Service', budget: 'Budget', description: 'Details' };
 // Maximum length per field; one-line fields also lose line breaks (prevents email header injection).
@@ -36,7 +42,8 @@ const lastSentAt = () => { try { return Number(sessionStorage.getItem(THROTTLE_K
 const markSent = () => { try { sessionStorage.setItem(THROTTLE_KEY, String(Date.now())); } catch { /* storage unavailable */ } };
 
 /**
- * @param payload form values; may include `botcheck` (honeypot) and `startedAt` (ms timestamp when the form appeared)
+ * @param payload form values; may include `form` (reCAPTCHA action name, e.g. 'contact'),
+ *   `botcheck` (honeypot) and `startedAt` (ms timestamp when the form appeared)
  * @returns {Promise<{ sent: true } | { sent: false, whatsappUrl: string }>}
  */
 export async function submitLead(payload) {
@@ -49,9 +56,17 @@ export async function submitLead(payload) {
   }
 
   const lead = Object.fromEntries(Object.keys(LABELS).map((k) => [k, clean(k, payload[k])]));
+  const viaWhatsapp = () => ({ sent: false, whatsappUrl: whatsappLink(`Hello Worklancers, I'd like to get in touch.\n\n${toText(lead)}`) });
 
-  if (!SITE.web3formsKey) {
-    return { sent: false, whatsappUrl: whatsappLink(`Hello Worklancers, I'd like to get in touch.\n\n${toText(lead)}`) };
+  if (!SITE.web3formsKey) return viaWhatsapp();
+
+  let recaptcha = {};
+  if (recaptchaEnabled()) {
+    try {
+      recaptcha = { recaptcha_response: await getRecaptchaToken(payload.form || 'lead') };
+    } catch {
+      return viaWhatsapp();
+    }
   }
 
   let res;
@@ -65,6 +80,7 @@ export async function submitLead(payload) {
         from_name: `${SITE.name} website`,
         replyto: lead.email,
         botcheck: '', // Web3Forms rejects the submission server-side if this is ever non-empty
+        ...recaptcha,
         ...Object.fromEntries(Object.entries(LABELS).filter(([k]) => lead[k]).map(([k, label]) => [label, lead[k]])),
       }),
     });
@@ -72,6 +88,8 @@ export async function submitLead(payload) {
     throw new Error('Could not send your request. Please check your connection or contact us on WhatsApp.');
   }
   const data = await res.json().catch(() => ({}));
+  // reCAPTCHA said "probably a bot". If it's actually a person (VPN, privacy browser), WhatsApp still works.
+  if (!data.success && /captcha/i.test(data.message || '')) return viaWhatsapp();
   if (!res.ok || !data.success) throw new Error(data.message || 'Something went wrong. Please try again or contact us on WhatsApp.');
   markSent();
   return { sent: true };

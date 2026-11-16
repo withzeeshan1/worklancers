@@ -5,11 +5,13 @@ import { m } from 'framer-motion';
 import { Mail, MessageCircle, AlertCircle, Loader2, Clock } from 'lucide-react';
 import FormSuccess from '../components/FormSuccess';
 import Honeypot from '../components/Honeypot';
+import RecaptchaNotice from '../components/RecaptchaNotice';
 import Seo from '../components/Seo';
 import { breadcrumbs } from '../seo/schema';
 import { Button, PageHeader, Section } from '../components/ui';
 import { services, budgets } from '../services/content';
 import { submitLead } from '../services/api';
+import { primeRecaptcha } from '../services/recaptcha';
 import { SITE, whatsappLink } from '../utils/config';
 
 function Err({ e }) {
@@ -28,7 +30,7 @@ export default function Contact() {
   const onSubmit = async (values) => {
     setStatus(null);
     try {
-      const result = await submitLead({ ...values, startedAt });
+      const result = await submitLead({ ...values, form: 'contact', startedAt });
       setStatus({ ok: true, result });
       reset();
     } catch (e) {
@@ -42,7 +44,7 @@ export default function Contact() {
       <PageHeader image="/images/planning.webp" eyebrow="Free quote, no obligation" title="Let's Talk About Your Project" text="Tell us what you need. We reply within 24 hours with a clear plan and a fixed-price quote." />
       <Section>
         <div className="grid gap-10 lg:grid-cols-3">
-          <m.form initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.5 }} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5 rounded-xl2 border border-line bg-card p-6 shadow-soft sm:p-8 lg:col-span-2">
+          <m.form initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.5 }} onFocusCapture={primeRecaptcha} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5 rounded-xl2 border border-line bg-card p-6 shadow-soft sm:p-8 lg:col-span-2">
             <Honeypot register={register} />
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="text-sm font-medium text-fg">Full Name
@@ -65,6 +67,7 @@ export default function Contact() {
             <label className="block text-sm font-medium text-fg">Project Description
               <textarea rows={5} placeholder="What do you need, and what should it achieve? e.g. 'A website for my clinic so patients can book online.'" className={field} maxLength={4000} {...register('description', { required: 'Please describe your project', minLength: { value: 20, message: 'A sentence or two is enough (20+ characters)' } })} /><Err e={errors.description} /></label>
             <Button type="submit" disabled={isSubmitting}>{isSubmitting ? <><Loader2 size={16} className="animate-spin" /> Sending...</> : 'Send Request'}</Button>
+            <RecaptchaNotice className="!text-left" />
             {status?.ok && <FormSuccess result={status.result} whatsappText="Hi Worklancers, I just sent a project request through your website." />}
             {status && !status.ok && (
               <p role="alert" className="flex items-start gap-2 rounded-xl bg-red-500/10 ring-1 ring-red-500/20 px-4 py-3 text-sm text-red-300"><AlertCircle size={18} className="shrink-0" />{status.msg}</p>

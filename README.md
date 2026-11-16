@@ -14,11 +14,19 @@ HTML/CSS/JS that you can upload to any web host.
     npm run dev                 # http://localhost:5173
 
 ## Settings (client/.env)
-- `VITE_SITE_URL`: your live domain, e.g. https://www.worklancers.com (used for SEO, sitemap.xml, robots.txt).
+- `VITE_SITE_URL`: your live domain, https://worklancer.org (used for SEO, sitemap.xml, robots.txt).
 - `VITE_CONTACT_EMAIL`, `VITE_WHATSAPP_NUMBER`: shown on the site (WhatsApp number in international format, digits only).
 - `VITE_WEB3FORMS_KEY`: free key from https://web3forms.com (sign up with the email that should receive leads).
   With a key, every form (contact, free audit, software estimate) is emailed to you.
   Without a key, the forms show a "Send on WhatsApp" button with the visitor's details pre-filled.
+- `VITE_RECAPTCHA_SITE_KEY`: Google reCAPTCHA **v3** site key (public; a default is set in `src/utils/config.js`).
+  All three forms send a reCAPTCHA token with each submission. To make Web3Forms actually check it:
+  1. In the Google reCAPTCHA admin (https://www.google.com/recaptcha/admin), list your live domain
+     (and `localhost` if you want to test locally).
+  2. In the Web3Forms dashboard, open the form's Settings, choose **recaptcha** as the captcha provider,
+     paste the **secret key** and save (a Web3Forms Pro feature).
+  **Never put the secret key in `.env` or anywhere in this repository:** everything in the site's code is public.
+  If reCAPTCHA can't load (ad blocker) or flags a visitor, the form hands their message to WhatsApp instead.
 
 Settings are baked in at build time, so rebuild after changing `.env`.
 

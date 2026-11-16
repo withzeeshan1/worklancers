@@ -4,7 +4,9 @@ import { AnimatePresence, m } from 'framer-motion';
 import { ArrowRight, AlertCircle, Loader2 } from 'lucide-react';
 import FormSuccess from './FormSuccess';
 import Honeypot from './Honeypot';
+import RecaptchaNotice from './RecaptchaNotice';
 import { submitLead } from '../services/api';
+import { primeRecaptcha } from '../services/recaptcha';
 import { budgets } from '../services/content';
 
 export const SOFTWARE_SERVICE = 'Custom Software Development';
@@ -25,7 +27,7 @@ export default function EstimateForm({ projectTypes }) {
   const onSubmit = async ({ fullName, email, companyName, projectType, budget, details, botcheck }) => {
     setStatus(null);
     try {
-      const result = await submitLead({ botcheck, startedAt, fullName, email, companyName, budget, service: SOFTWARE_SERVICE, description: `Project type: ${projectType}\n\n${details}` });
+      const result = await submitLead({ form: 'estimate', botcheck, startedAt, fullName, email, companyName, budget, service: SOFTWARE_SERVICE, description: `Project type: ${projectType}\n\n${details}` });
       setStatus({ ok: true, result });
       reset();
     } catch (e) {
@@ -42,7 +44,7 @@ export default function EstimateForm({ projectTypes }) {
             <FormSuccess result={status.result} sentText="Expect a reply with next steps within 24 hours." whatsappText="Hi Worklancers, I just sent a custom software estimate request." />
           </m.div>
         ) : (
-          <m.form key="form" exit={{ opacity: 0 }} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
+          <m.form key="form" exit={{ opacity: 0 }} onFocusCapture={primeRecaptcha} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
             <Honeypot register={register} />
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="text-sm font-medium text-fg">Your name
@@ -68,6 +70,7 @@ export default function EstimateForm({ projectTypes }) {
               {isSubmitting ? <><Loader2 size={16} className="animate-spin" /> Sending…</> : <>Get my free estimate <ArrowRight size={16} /></>}
             </m.button>
             <p className="text-center text-xs text-muted">We're happy to sign an NDA before you share details.</p>
+            <RecaptchaNotice />
             {status && !status.ok && <p role="alert" className="flex items-start gap-2 rounded-xl bg-red-500/10 ring-1 ring-red-500/20 px-4 py-3 text-sm text-red-300"><AlertCircle size={18} className="shrink-0" />{status.msg}</p>}
           </m.form>
         )}

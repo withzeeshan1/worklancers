@@ -4,7 +4,9 @@ import { AnimatePresence, m } from 'framer-motion';
 import { ArrowRight, AlertCircle, Loader2, Gift } from 'lucide-react';
 import FormSuccess from './FormSuccess';
 import Honeypot from './Honeypot';
+import RecaptchaNotice from './RecaptchaNotice';
 import { submitLead } from '../services/api';
+import { primeRecaptcha } from '../services/recaptcha';
 
 export const AUDIT_SERVICE = 'Free Website Audit';
 
@@ -21,7 +23,7 @@ export default function AuditForm({ dark = false }) {
     setStatus(null);
     try {
       const result = await submitLead({
-        botcheck, startedAt,
+        form: 'audit', botcheck, startedAt,
         fullName, email, service: AUDIT_SERVICE,
         description: `Free website audit request. Website: ${website?.trim() || 'No website yet (wants advice on starting one)'}`,
       });
@@ -44,7 +46,7 @@ export default function AuditForm({ dark = false }) {
         {status?.ok ? (
           <m.div key="done"><FormSuccess result={status.result} sentText="We will email your audit within 24 hours." whatsappText="Hi Worklancers, I just requested a free website audit." /></m.div>
         ) : (
-          <m.form key="form" exit={{ opacity: 0 }} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-3">
+          <m.form key="form" exit={{ opacity: 0 }} onFocusCapture={primeRecaptcha} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-3">
             <Honeypot register={register} />
             <div>
               <label htmlFor="audit-name" className="sr-only">Your name</label>
@@ -65,6 +67,7 @@ export default function AuditForm({ dark = false }) {
               className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-b from-violet-500 to-violet-700 px-6 py-3.5 text-sm font-medium text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_8px_30px_-6px_rgb(139_92_246/0.6)] transition hover:brightness-110 disabled:opacity-60">
               {isSubmitting ? <><Loader2 size={16} className="animate-spin" /> Sending…</> : <>Send me my free audit <ArrowRight size={16} /></>}
             </m.button>
+            <RecaptchaNotice />
             {status && !status.ok && <p role="alert" className="flex items-start gap-2 rounded-xl bg-red-500/10 ring-1 ring-red-500/20 px-4 py-3 text-sm text-red-300"><AlertCircle size={18} className="shrink-0" />{status.msg}</p>}
           </m.form>
         )}
