@@ -5,6 +5,8 @@ export const SITE = {
   whatsapp: import.meta.env.VITE_WHATSAPP_NUMBER || '923356665416',
   url: import.meta.env.VITE_SITE_URL || 'http://localhost:5173',
   web3formsKey: import.meta.env.VITE_WEB3FORMS_KEY || 'c7846b09-cd51-4d10-97f0-85c5e9142b5b',
+  // Google reCAPTCHA v3 SITE key (public by design). The SECRET key belongs only in the Web3Forms dashboard.
+  recaptchaSiteKey: import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LeJ1yMuAAAAAEHZhRZ4Hemu9PAY4-wqQ6gV8Zsm',
 };
 export const whatsappLink = (text = 'Hello Worklancers, I would like to discuss a project.') =>
   `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(text)}`;
