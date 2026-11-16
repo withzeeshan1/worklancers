@@ -69,9 +69,8 @@ export async function submitLead(payload) {
     }
   }
 
-  let res;
-  try {
-    res = await fetch('https://api.web3forms.com/submit', {
+  const post = async (extra) => {
+    const r = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
@@ -80,14 +79,25 @@ export async function submitLead(payload) {
         from_name: `${SITE.name} website`,
         replyto: lead.email,
         botcheck: '', // Web3Forms rejects the submission server-side if this is ever non-empty
-        ...recaptcha,
+        ...extra,
         ...Object.fromEntries(Object.entries(LABELS).filter(([k]) => lead[k]).map(([k, label]) => [label, lead[k]])),
       }),
     });
+    return [r, await r.json().catch(() => ({}))];
+  };
+
+  let res, data;
+  try {
+    [res, data] = await post(recaptcha);
+    // Web3Forms' free plan rejects any reCAPTCHA token ("You are trying to use a Pro feature").
+    // Never lose a lead over account settings: send it again without the token. (Not a bypass: if
+    // reCAPTCHA is enforced in the Web3Forms dashboard, a token-less submission is refused anyway.)
+    if (!data.success && recaptcha.recaptcha_response && /pro feature|upgrade/i.test(data.message || '')) {
+      [res, data] = await post({});
+    }
   } catch {
     throw new Error('Could not send your request. Please check your connection or contact us on WhatsApp.');
   }
-  const data = await res.json().catch(() => ({}));
   // reCAPTCHA said "probably a bot". If it's actually a person (VPN, privacy browser), WhatsApp still works.
   if (!data.success && /captcha/i.test(data.message || '')) return viaWhatsapp();
   if (!res.ok || !data.success) throw new Error(data.message || 'Something went wrong. Please try again or contact us on WhatsApp.');

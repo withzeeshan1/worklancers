@@ -16,7 +16,9 @@ const withTimeout = (promise, ms, message) => Promise.race([
   new Promise((_, reject) => { setTimeout(() => reject(new Error(message)), ms); }),
 ]);
 
-export const recaptchaEnabled = () => Boolean(SITE.recaptchaSiteKey);
+// Off unless SITE.recaptchaEnabled is switched on (requires Web3Forms Pro, see utils/config.js).
+// When off: Google is never contacted, no token is sent, and the form notice is hidden.
+export const recaptchaEnabled = () => Boolean(SITE.recaptchaEnabled && SITE.recaptchaSiteKey);
 
 export function loadRecaptcha() {
   if (typeof window === 'undefined' || !recaptchaEnabled()) return Promise.reject(new Error('reCAPTCHA is not available'));
