@@ -7,3 +7,6 @@ dist
 dist-server
 .DS_Store
 *.log
+
+# Ready-to-upload website build (made by `npm run build`, not source code)
+worklancer-org-upload.zip

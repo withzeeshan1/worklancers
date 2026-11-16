@@ -14,7 +14,7 @@ HTML/CSS/JS that you can upload to any web host.
     npm run dev                 # http://localhost:5173
 
 ## Settings (client/.env)
-- `VITE_SITE_URL`: your live domain, e.g. https://www.worklancers.com (used for SEO, sitemap.xml, robots.txt).
+- `VITE_SITE_URL`: your live domain, https://worklancer.org (used for SEO, sitemap.xml, robots.txt).
 - `VITE_CONTACT_EMAIL`, `VITE_WHATSAPP_NUMBER`: shown on the site (WhatsApp number in international format, digits only).
 - `VITE_WEB3FORMS_KEY`: free key from https://web3forms.com (sign up with the email that should receive leads).
   With a key, every form (contact, free audit, software estimate) is emailed to you.
