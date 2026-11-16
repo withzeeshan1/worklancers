@@ -75,7 +75,7 @@ export function blogPosting(post) {
     author: { '@type': 'Organization', name: post.author || BRAND },
     publisher: { '@id': ORG_ID() },
     mainEntityOfPage: siteUrl(`/blog/${post.slug}`),
-    image: siteUrl('/og-image.jpg'),
+    image: siteUrl(post.image || '/og-image.jpg'),
     inLanguage: 'en',
   };
 }

@@ -32,9 +32,9 @@ export default function Blog() {
               <m.article key={p.slug} layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ duration: 0.35, delay: i * 0.06 }}
                 className="spotlight group overflow-hidden rounded-xl2 border border-line bg-card shadow-soft transition-shadow duration-300 hover:shadow-xl hover:shadow-primary/10">
                 <Link to={`/blog/${p.slug}`} className="block">
-                  <div className="relative grid h-40 place-items-center overflow-hidden bg-gradient-to-br from-primary/25 to-sky-500/10 text-sm font-semibold text-violet-300">
-                    <span className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-white/10 transition duration-700 group-hover:scale-[3]" aria-hidden="true" />
-                    <span className="relative">{p.category}</span>
+                  <div className="relative h-44 overflow-hidden bg-gradient-to-br from-primary/25 to-sky-500/10">
+                    {p.image && <img src={p.image} alt={p.imageAlt || ''} width={1600} height={900} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />}
+                    <span className="absolute left-3 top-3 rounded-full bg-black/60 px-3 py-1 text-xs font-semibold text-violet-200 backdrop-blur">{p.category}</span>
                   </div>
                   <div className="p-6"><h2 className="text-lg transition group-hover:text-violet-300">{p.title}</h2><p className="mt-2 text-sm text-muted">{p.excerpt}</p>
                     <p className="mt-4 flex items-center justify-between text-xs text-muted">{p.author} · {formatDate(p.publishedAt)}<ArrowRight size={16} className="text-violet-300 transition group-hover:translate-x-1" /></p></div>

@@ -89,7 +89,7 @@ export const projects = [
 ].map((p, i) => ({ technologies: [], isDemo: false, isFeatured: i < 3, ...p }));
 
 export const posts = [
-  { slug: 'how-to-choose-a-web-development-agency', title: 'How to Choose a Web Development Agency', category: 'Web Development', author: 'Worklancers Team', publishedAt: '2026-10-12',
+  { slug: 'how-to-choose-a-web-development-agency', image: '/images/blog/agency-cover.webp', imageAlt: 'A business team meeting around a conference table with laptops', title: 'How to Choose a Web Development Agency', category: 'Web Development', author: 'Worklancers Team', publishedAt: '2026-10-12',
     excerpt: 'A practical checklist for comparing web development agencies on process, communication, pricing and technical fit before you sign a contract.',
     content: [
       "Hiring a web development agency is one of the biggest marketing decisions a growing business makes. The right partner gives you a website or web app that brings in customers for years. The wrong one leaves you with missed deadlines, a site nobody on your team can update and a bill that keeps growing. The good news is that you can tell the two apart before you sign anything, if you know what to look for.",
@@ -112,6 +112,7 @@ export const posts = [
             ]
       },
       "If an agency has built products in your industry, that is a bonus, but it is not essential. Experience with similar features, such as bookings, member areas or online payments, often matters more than the industry itself.",
+      {"img": "/images/blog/agency-discussion.webp", "alt": "Two people discussing a project over a laptop", "caption": "Before you sign, ask the agency to walk you through exactly how a project runs, step by step."},
       {
             "h": "3. Ask how they work, step by step"
       },
@@ -169,7 +170,7 @@ export const posts = [
       "The agency that ticks the most boxes is usually the safest choice, even if it is not the cheapest. A website that brings in customers pays for itself; one that has to be rebuilt in a year never does.",
       "If you would like a second opinion on your current website or a quote you have received, our team offers a free website audit. We will review your site and send practical recommendations within 24 hours, with no obligation to work with us."
 ] },
-  { slug: 'seo-basics-for-new-websites', title: 'SEO Basics for a New Website', category: 'SEO', author: 'Worklancers Team', publishedAt: '2026-10-20',
+  { slug: 'seo-basics-for-new-websites', image: '/images/blog/seo-cover.webp', imageAlt: 'A hand-drawn chart showing steady growth on a notebook', title: 'SEO Basics for a New Website', category: 'SEO', author: 'Worklancers Team', publishedAt: '2026-10-20',
     excerpt: 'The first SEO steps every new website should take, from titles and page speed to sitemaps and content, so Google can find, understand and rank it.',
     content: [
       "Launching a new website is exciting, but on day one Google does not know it exists. Search engines need clear signals to find your pages, understand what they are about and decide when to show them. The good news is that the most important SEO foundations are simple, and getting them right at launch saves months of catching up later.",
@@ -196,6 +197,7 @@ export const posts = [
       },
       "Each page should have a single main heading (H1) that describes the topic, followed by subheadings (H2, H3) that break the content into sections. This helps visitors skim and helps search engines understand how your content is organised.",
       "Write enough useful content to answer the questions your customers have. Thin pages with a few lines of text rarely rank well. A service page that explains who the service is for, how it works, what it costs to get started and common questions gives Google much more to work with.",
+      {"img": "/images/blog/seo-planning.webp", "alt": "Someone sketching page layouts and wireframes beside a phone", "caption": "Plan each page's structure and headings before you write, so visitors and search engines can follow it."},
       {
             "h": "4. Make the site fast and mobile-friendly"
       },
@@ -248,7 +250,7 @@ export const posts = [
       },
       "Results from SEO build over time, but these foundations make every later effort more effective. If you would like us to check how your website measures up, request a free website audit and we will send you a practical list of improvements."
 ] },
-  { slug: 'when-to-automate-with-ai', title: 'When to Automate With AI', category: 'AI & Automation', author: 'Worklancers Team', publishedAt: '2026-10-28',
+  { slug: 'when-to-automate-with-ai', image: '/images/blog/ai-cover.webp', imageAlt: 'A friendly service robot looking at the camera', title: 'When to Automate With AI', category: 'AI & Automation', author: 'Worklancers Team', publishedAt: '2026-10-28',
     excerpt: 'Not every task needs AI. Learn how to spot the repetitive work worth automating, where to keep a human in the loop and how to start small.',
     content: [
       "Artificial intelligence is everywhere in the news, and many business owners feel pressure to “do something with AI”. But adding AI for its own sake rarely pays off. The businesses that benefit most start with a specific, repetitive problem and use automation to remove it. This guide explains how to spot the tasks worth automating, where AI genuinely helps and how to start without a large budget or risky changes.",
@@ -287,6 +289,7 @@ export const posts = [
       },
       "AI is powerful, but it can make confident mistakes. For tasks where an error would be costly, such as pricing, legal wording, refunds or medical and financial advice, use AI to prepare a draft and let a person approve it. For low-risk tasks, such as answering opening hours or routing an enquiry, the AI can act on its own.",
       "A good rule is to ask, “What is the worst thing that could happen if this answer is wrong?” If the answer is serious, keep a person in control.",
+      {"img": "/images/blog/ai-hand.webp", "alt": "A white robotic hand reaching forward", "caption": "Let AI take the repetitive work, and keep a person in charge of the decisions that matter."},
       {
             "h": "Common, practical uses for small businesses"
       },
