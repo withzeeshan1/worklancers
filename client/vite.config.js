@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig, loadEnv } from 'vite'
 import { allRoutes } from './src/seo/routes.js'
+import { securityHeaders } from './security-headers.js'
 
 // Writes sitemap.xml and robots.txt into the build, using VITE_SITE_URL as the domain.
 function seoFiles(siteUrl) {
@@ -22,5 +23,8 @@ function seoFiles(siteUrl) {
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
-  return { plugins: [react(), seoFiles(env.VITE_SITE_URL || 'http://localhost:5173')] }
+  // `vite preview` sends the production security headers (minus HTTPS-only ones) so they can be tested locally.
+  const { 'Strict-Transport-Security': _hsts, ...previewHeaders } = securityHeaders
+  previewHeaders['Content-Security-Policy'] = previewHeaders['Content-Security-Policy'].replace('; upgrade-insecure-requests', '')
+  return { plugins: [react(), seoFiles(env.VITE_SITE_URL || 'http://localhost:5173')], preview: { headers: previewHeaders } }
 })

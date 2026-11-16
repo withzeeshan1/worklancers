@@ -27,7 +27,7 @@ export default function Blog() {
           ))}
         </div>
         <m.div layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence>
             {shown.map((p, i) => (
               <m.article key={p.slug} layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ duration: 0.35, delay: i * 0.06 }}
                 className="spotlight group overflow-hidden rounded-xl2 border border-line bg-card shadow-soft transition-shadow duration-300 hover:shadow-xl hover:shadow-primary/10">

@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { m } from 'framer-motion';
 import { Mail, MessageCircle, AlertCircle, Loader2, Clock } from 'lucide-react';
 import FormSuccess from '../components/FormSuccess';
+import Honeypot from '../components/Honeypot';
 import Seo from '../components/Seo';
 import { breadcrumbs } from '../seo/schema';
 import { Button, PageHeader, Section } from '../components/ui';
@@ -20,12 +21,14 @@ const field = 'mt-1 w-full rounded-xl border border-line bg-white/[0.03] px-4 py
 export default function Contact() {
   const { state } = useLocation();
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm({ defaultValues: { service: state?.service || '' } });
+  // when the form first appeared (speed trap in services/api.js)
+  const [startedAt] = useState(() => Date.now());
   const [status, setStatus] = useState(null);
 
   const onSubmit = async (values) => {
     setStatus(null);
     try {
-      const result = await submitLead(values);
+      const result = await submitLead({ ...values, startedAt });
       setStatus({ ok: true, result });
       reset();
     } catch (e) {
@@ -40,15 +43,16 @@ export default function Contact() {
       <Section>
         <div className="grid gap-10 lg:grid-cols-3">
           <m.form initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.5 }} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5 rounded-xl2 border border-line bg-card p-6 shadow-soft sm:p-8 lg:col-span-2">
+            <Honeypot register={register} />
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="text-sm font-medium text-fg">Full Name
-                <input className={field} {...register('fullName', { required: 'Full name is required', minLength: { value: 2, message: 'Name is too short' } })} /><Err e={errors.fullName} /></label>
+                <input className={field} maxLength={100} {...register('fullName', { required: 'Full name is required', minLength: { value: 2, message: 'Name is too short' } })} /><Err e={errors.fullName} /></label>
               <label className="text-sm font-medium text-fg">Email
-                <input type="email" className={field} {...register('email', { required: 'Email is required', pattern: { value: /^\S+@\S+\.\S+$/, message: 'Enter a valid email' } })} /><Err e={errors.email} /></label>
+                <input type="email" className={field} maxLength={254} {...register('email', { required: 'Email is required', pattern: { value: /^\S+@\S+\.\S+$/, message: 'Enter a valid email' } })} /><Err e={errors.email} /></label>
               <label className="text-sm font-medium text-fg">Phone / WhatsApp <span className="text-muted font-normal">(optional)</span>
-                <input type="tel" className={field} {...register('phone', { pattern: { value: /^[+\d][\d\s()-]{6,18}$/, message: 'Enter a valid phone number' } })} /><Err e={errors.phone} /></label>
+                <input type="tel" className={field} maxLength={30} {...register('phone', { pattern: { value: /^[+\d][\d\s()-]{6,18}$/, message: 'Enter a valid phone number' } })} /><Err e={errors.phone} /></label>
               <label className="text-sm font-medium text-fg">Company Name <span className="text-muted font-normal">(optional)</span>
-                <input className={field} {...register('companyName')} /></label>
+                <input className={field} maxLength={120} {...register('companyName')} /></label>
               <label className="text-sm font-medium text-fg">Required Service
                 <select className={field} {...register('service', { required: 'Please choose a service' })}>
                   <option value="">Select a service</option>{services.map((s) => <option key={s.slug}>{s.title}</option>)}<option>Custom Software Development</option><option>Other</option>
@@ -59,7 +63,7 @@ export default function Contact() {
                 </select></label>
             </div>
             <label className="block text-sm font-medium text-fg">Project Description
-              <textarea rows={5} placeholder="What do you need, and what should it achieve? e.g. 'A website for my clinic so patients can book online.'" className={field} {...register('description', { required: 'Please describe your project', minLength: { value: 20, message: 'A sentence or two is enough (20+ characters)' } })} /><Err e={errors.description} /></label>
+              <textarea rows={5} placeholder="What do you need, and what should it achieve? e.g. 'A website for my clinic so patients can book online.'" className={field} maxLength={4000} {...register('description', { required: 'Please describe your project', minLength: { value: 20, message: 'A sentence or two is enough (20+ characters)' } })} /><Err e={errors.description} /></label>
             <Button type="submit" disabled={isSubmitting}>{isSubmitting ? <><Loader2 size={16} className="animate-spin" /> Sending...</> : 'Send Request'}</Button>
             {status?.ok && <FormSuccess result={status.result} whatsappText="Hi Worklancers, I just sent a project request through your website." />}
             {status && !status.ok && (

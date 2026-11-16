@@ -26,7 +26,7 @@ export default function Portfolio() {
           ))}
         </div>
         <m.div layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence>
             {shown.map((p, i) => (
               <m.div key={p.slug} layout initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.35, delay: i * 0.05 }} className="h-full">
                 <ProjectCard project={p} />

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { AnimatePresence, m } from 'framer-motion';
 import { ArrowRight, AlertCircle, Loader2, Gift } from 'lucide-react';
 import FormSuccess from './FormSuccess';
+import Honeypot from './Honeypot';
 import { submitLead } from '../services/api';
 
 export const AUDIT_SERVICE = 'Free Website Audit';
@@ -12,12 +13,15 @@ const field = 'w-full rounded-xl border border-line bg-white/[0.03] px-4 py-3 te
 // Low-friction first step: three fields, no budget or long description required.
 export default function AuditForm({ dark = false }) {
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm();
+  // when the form first appeared (speed trap in services/api.js)
+  const [startedAt] = useState(() => Date.now());
   const [status, setStatus] = useState(null);
 
-  const onSubmit = async ({ fullName, email, website }) => {
+  const onSubmit = async ({ fullName, email, website, botcheck }) => {
     setStatus(null);
     try {
       const result = await submitLead({
+        botcheck, startedAt,
         fullName, email, service: AUDIT_SERVICE,
         description: `Free website audit request. Website: ${website?.trim() || 'No website yet (wants advice on starting one)'}`,
       });
@@ -41,19 +45,20 @@ export default function AuditForm({ dark = false }) {
           <m.div key="done"><FormSuccess result={status.result} sentText="We will email your audit within 24 hours." whatsappText="Hi Worklancers, I just requested a free website audit." /></m.div>
         ) : (
           <m.form key="form" exit={{ opacity: 0 }} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-3">
+            <Honeypot register={register} />
             <div>
               <label htmlFor="audit-name" className="sr-only">Your name</label>
-              <input id="audit-name" placeholder="Your name" className={field} {...register('fullName', { required: 'Please enter your name', minLength: { value: 2, message: 'Name is too short' } })} />
+              <input id="audit-name" placeholder="Your name" className={field} maxLength={100} {...register('fullName', { required: 'Please enter your name', minLength: { value: 2, message: 'Name is too short' } })} />
               {errors.fullName && <p className="mt-1 text-xs text-red-400" role="alert">{errors.fullName.message}</p>}
             </div>
             <div>
               <label htmlFor="audit-email" className="sr-only">Email</label>
-              <input id="audit-email" type="email" placeholder="Email address" className={field} {...register('email', { required: 'Please enter your email', pattern: { value: /^\S+@\S+\.\S+$/, message: 'Enter a valid email' } })} />
+              <input id="audit-email" type="email" placeholder="Email address" className={field} maxLength={254} {...register('email', { required: 'Please enter your email', pattern: { value: /^\S+@\S+\.\S+$/, message: 'Enter a valid email' } })} />
               {errors.email && <p className="mt-1 text-xs text-red-400" role="alert">{errors.email.message}</p>}
             </div>
             <div>
               <label htmlFor="audit-site" className="sr-only">Website (optional)</label>
-              <input id="audit-site" placeholder="Your website (leave blank if you don't have one)" className={field} {...register('website', { maxLength: { value: 200, message: 'That address is too long' } })} />
+              <input id="audit-site" placeholder="Your website (leave blank if you don't have one)" className={field} maxLength={200} {...register('website', { maxLength: { value: 200, message: 'That address is too long' } })} />
               {errors.website && <p className="mt-1 text-xs text-red-400" role="alert">{errors.website.message}</p>}
             </div>
             <m.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" disabled={isSubmitting}

@@ -1,6 +1,9 @@
 node_modules
 .env
+# any environment file (.env.production, .env.local, ...) but keep the examples
+.env.*
+!.env.example
 dist
+dist-server
 .DS_Store
 *.log
-dist-server

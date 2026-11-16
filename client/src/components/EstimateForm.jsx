@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { AnimatePresence, m } from 'framer-motion';
 import { ArrowRight, AlertCircle, Loader2 } from 'lucide-react';
 import FormSuccess from './FormSuccess';
+import Honeypot from './Honeypot';
 import { submitLead } from '../services/api';
 import { budgets } from '../services/content';
 
@@ -17,12 +18,14 @@ function Err({ e }) {
 // Project-estimate form for the custom software landing page. Saved as a normal lead.
 export default function EstimateForm({ projectTypes }) {
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm();
+  // when the form first appeared (speed trap in services/api.js)
+  const [startedAt] = useState(() => Date.now());
   const [status, setStatus] = useState(null);
 
-  const onSubmit = async ({ fullName, email, companyName, projectType, budget, details }) => {
+  const onSubmit = async ({ fullName, email, companyName, projectType, budget, details, botcheck }) => {
     setStatus(null);
     try {
-      const result = await submitLead({ fullName, email, companyName, budget, service: SOFTWARE_SERVICE, description: `Project type: ${projectType}\n\n${details}` });
+      const result = await submitLead({ botcheck, startedAt, fullName, email, companyName, budget, service: SOFTWARE_SERVICE, description: `Project type: ${projectType}\n\n${details}` });
       setStatus({ ok: true, result });
       reset();
     } catch (e) {
@@ -40,13 +43,14 @@ export default function EstimateForm({ projectTypes }) {
           </m.div>
         ) : (
           <m.form key="form" exit={{ opacity: 0 }} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
+            <Honeypot register={register} />
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="text-sm font-medium text-fg">Your name
-                <input className={field} {...register('fullName', { required: 'Please enter your name', minLength: { value: 2, message: 'Name is too short' } })} /><Err e={errors.fullName} /></label>
+                <input className={field} maxLength={100} {...register('fullName', { required: 'Please enter your name', minLength: { value: 2, message: 'Name is too short' } })} /><Err e={errors.fullName} /></label>
               <label className="text-sm font-medium text-fg">Work email
-                <input type="email" className={field} {...register('email', { required: 'Please enter your email', pattern: { value: /^\S+@\S+\.\S+$/, message: 'Enter a valid email' } })} /><Err e={errors.email} /></label>
+                <input type="email" className={field} maxLength={254} {...register('email', { required: 'Please enter your email', pattern: { value: /^\S+@\S+\.\S+$/, message: 'Enter a valid email' } })} /><Err e={errors.email} /></label>
               <label className="text-sm font-medium text-fg">Company <span className="font-normal text-muted">(optional)</span>
-                <input className={field} {...register('companyName', { maxLength: { value: 120, message: 'Too long' } })} /><Err e={errors.companyName} /></label>
+                <input className={field} maxLength={120} {...register('companyName', { maxLength: { value: 120, message: 'Too long' } })} /><Err e={errors.companyName} /></label>
               <label className="text-sm font-medium text-fg">What do you need?
                 <select className={field} {...register('projectType', { required: 'Please choose one' })}>
                   <option value="">Select a project type</option>
@@ -58,7 +62,7 @@ export default function EstimateForm({ projectTypes }) {
               <select className={field} {...register('budget')}><option value="">Not sure yet</option>{budgets.filter((b) => b !== 'Not sure yet').map((b) => <option key={b}>{b}</option>)}</select></label>
             <label className="block text-sm font-medium text-fg">Tell us about the project
               <textarea rows={4} placeholder="What should the software do, who will use it, and is there a deadline?" className={field}
-                {...register('details', { required: 'Please describe the project', minLength: { value: 20, message: 'A sentence or two is enough (20+ characters)' }, maxLength: { value: 3800, message: 'Please keep it under 3,800 characters' } })} /><Err e={errors.details} /></label>
+                maxLength={3800} {...register('details', { required: 'Please describe the project', minLength: { value: 20, message: 'A sentence or two is enough (20+ characters)' }, maxLength: { value: 3800, message: 'Please keep it under 3,800 characters' } })} /><Err e={errors.details} /></label>
             <m.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" disabled={isSubmitting}
               className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-b from-violet-500 to-violet-700 px-6 py-3.5 text-sm font-medium text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_8px_30px_-6px_rgb(139_92_246/0.6)] transition hover:brightness-110 disabled:opacity-60">
               {isSubmitting ? <><Loader2 size={16} className="animate-spin" /> Sending…</> : <>Get my free estimate <ArrowRight size={16} /></>}
