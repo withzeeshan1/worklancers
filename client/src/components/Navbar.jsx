@@ -21,14 +21,18 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  };
+
   return (
     <header className="sticky top-0 z-40 px-3 pt-3 sm:px-6">
       <nav aria-label="Main"
         className={`mx-auto flex h-16 max-w-6xl items-center justify-between rounded-full border px-3 pl-5 transition-all duration-500 ${scrolled || open ? 'border-white/10 bg-[#0B0B12]/85 shadow-lg shadow-black/40 backdrop-blur-xl' : 'border-white/10 bg-black/40 backdrop-blur-md'}`}>
-        <Link to="/" aria-label="Worklancer home"><Logo /></Link>
+        <Link to="/" aria-label="Worklancer home" onClick={scrollToTop}><Logo /></Link>
         <div className="hidden items-center gap-1 lg:flex">
           {links.map(([to, label]) => (
-            <NavLink key={to} to={to} end={to === '/'} className={({ isActive }) => `relative rounded-full px-3.5 py-1.5 text-sm font-medium transition ${isActive ? 'text-white' : 'text-slate-300 hover:text-white'}`}>
+            <NavLink key={to} to={to} end={to === '/'} onClick={() => { if (to === '/') scrollToTop(); }} className={({ isActive }) => `relative rounded-full px-3.5 py-1.5 text-sm font-medium transition ${isActive ? 'text-white' : 'text-slate-300 hover:text-white'}`}>
               {({ isActive }) => (
                 <>
                   {isActive && <m.span layoutId="nav-pill" className="absolute inset-0 rounded-full bg-white/[0.12] ring-1 ring-white/15" transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
@@ -52,7 +56,7 @@ export default function Navbar() {
             <div className="flex flex-col">
               {links.map(([to, label], i) => (
                 <m.div key={to} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}>
-                  <NavLink to={to} end={to === '/'} onClick={() => setOpen(false)}
+                  <NavLink to={to} end={to === '/'} onClick={() => { setOpen(false); if (to === '/') scrollToTop(); }}
                     className={({ isActive }) => `block rounded-xl px-4 py-3 text-base font-medium ${isActive ? 'bg-white/[0.08] text-white' : 'text-slate-300'}`}>{label}</NavLink>
                 </m.div>
               ))}
