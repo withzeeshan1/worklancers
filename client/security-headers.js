@@ -4,20 +4,24 @@
 // and `vite preview` sends them too, so they can be tested locally.
 
 // Content Security Policy: only the site's own files may load or run.
-// - The only outside service the browser may contact is Web3Forms (contact forms).
+// - Outside services the browser may contact: Web3Forms (contact forms) and Google reCAPTCHA
+//   (only its /recaptcha/ paths, loaded once a visitor starts filling in a form).
 // - style-src-elem 'self' blocks injected <style> blocks; style-src-attr allows the inline
 //   style attributes set by the animation library. style-src is the fallback for older browsers.
+const recaptchaScripts = 'https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/';
+const recaptchaFrames = 'https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/';
+
 export const csp = [
   "default-src 'self'",
-  "script-src 'self'",
+  `script-src 'self' ${recaptchaScripts}`,
   "style-src 'self' 'unsafe-inline'",
   "style-src-elem 'self'",
   "style-src-attr 'unsafe-inline'",
   "img-src 'self' data:",
   "font-src 'self'",
-  "connect-src 'self' https://api.web3forms.com",
+  "connect-src 'self' https://api.web3forms.com https://www.google.com/recaptcha/",
   "media-src 'none'",
-  "frame-src 'none'",
+  `frame-src ${recaptchaFrames}`,
   "worker-src 'none'",
   "manifest-src 'self'",
   "object-src 'none'",
