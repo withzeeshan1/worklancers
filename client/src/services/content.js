@@ -89,7 +89,7 @@ export const projects = [
 ].map((p, i) => ({ technologies: [], isDemo: false, isFeatured: i < 3, ...p }));
 
 export const posts = [
-  { slug: 'how-to-choose-a-web-development-agency', image: '/images/blog/agency-cover.webp', imageAlt: 'A business team meeting around a conference table with laptops', title: 'How to Choose a Web Development Agency', category: 'Web Development', author: 'Worklancers Team', publishedAt: '2026-10-12',
+  { slug: 'how-to-choose-a-web-development-agency', image: '/images/blog/agency-cover.webp', imageAlt: 'A business team meeting around a conference table with laptops', title: 'How to Choose a Web Development Agency', category: 'Web Development', author: 'Worklancer Team', publishedAt: '2026-10-12',
     excerpt: 'A practical checklist for comparing web development agencies on process, communication, pricing and technical fit before you sign a contract.',
     content: [
       "Hiring a web development agency is one of the biggest marketing decisions a growing business makes. The right partner gives you a website or web app that brings in customers for years. The wrong one leaves you with missed deadlines, a site nobody on your team can update and a bill that keeps growing. The good news is that you can tell the two apart before you sign anything, if you know what to look for.",
@@ -170,7 +170,7 @@ export const posts = [
       "The agency that ticks the most boxes is usually the safest choice, even if it is not the cheapest. A website that brings in customers pays for itself; one that has to be rebuilt in a year never does.",
       "If you would like a second opinion on your current website or a quote you have received, our team offers a free website audit. We will review your site and send practical recommendations within 24 hours, with no obligation to work with us."
 ] },
-  { slug: 'seo-basics-for-new-websites', image: '/images/blog/seo-cover.webp', imageAlt: 'A hand-drawn chart showing steady growth on a notebook', title: 'SEO Basics for a New Website', category: 'SEO', author: 'Worklancers Team', publishedAt: '2026-10-20',
+  { slug: 'seo-basics-for-new-websites', image: '/images/blog/seo-cover.webp', imageAlt: 'A hand-drawn chart showing steady growth on a notebook', title: 'SEO Basics for a New Website', category: 'SEO', author: 'Worklancer Team', publishedAt: '2026-10-20',
     excerpt: 'The first SEO steps every new website should take, from titles and page speed to sitemaps and content, so Google can find, understand and rank it.',
     content: [
       "Launching a new website is exciting, but on day one Google does not know it exists. Search engines need clear signals to find your pages, understand what they are about and decide when to show them. The good news is that the most important SEO foundations are simple, and getting them right at launch saves months of catching up later.",
@@ -250,7 +250,7 @@ export const posts = [
       },
       "Results from SEO build over time, but these foundations make every later effort more effective. If you would like us to check how your website measures up, request a free website audit and we will send you a practical list of improvements."
 ] },
-  { slug: 'when-to-automate-with-ai', image: '/images/blog/ai-cover.webp', imageAlt: 'A friendly service robot looking at the camera', title: 'When to Automate With AI', category: 'AI & Automation', author: 'Worklancers Team', publishedAt: '2026-10-28',
+  { slug: 'when-to-automate-with-ai', image: '/images/blog/ai-cover.webp', imageAlt: 'A friendly service robot looking at the camera', title: 'When to Automate With AI', category: 'AI & Automation', author: 'Worklancer Team', publishedAt: '2026-10-28',
     excerpt: 'Not every task needs AI. Learn how to spot the repetitive work worth automating, where to keep a human in the loop and how to start small.',
     content: [
       "Artificial intelligence is everywhere in the news, and many business owners feel pressure to “do something with AI”. But adding AI for its own sake rarely pays off. The businesses that benefit most start with a specific, repetitive problem and use automation to remove it. This guide explains how to spot the tasks worth automating, where AI genuinely helps and how to start without a large budget or risky changes.",
@@ -383,12 +383,12 @@ export const guarantees = [
 
 // Search titles/descriptions for each service page (titles under ~60 chars, descriptions under ~160).
 export const serviceSeo = {
-  'web-development': { title: 'Web Development Company in Pakistan', description: 'Fast custom websites, MERN web apps, WordPress and e-commerce sites that bring in leads. Fixed-price quotes from Worklancers, a software house in Pakistan.' },
-  'mobile-app-development': { title: 'Mobile App Development (Android & iOS)', description: 'Android, iOS and React Native app development for startups and businesses. One codebase, clean UI and API integration. Get a free estimate from Worklancers.' },
-  'graphic-design-branding': { title: 'Logo, Branding & UI/UX Design Services', description: 'Logo design, brand identity, UI/UX design and social media graphics that make your business look trusted and professional. Branding services by Worklancers.' },
-  'digital-marketing-seo': { title: 'SEO & Digital Marketing Services', description: 'SEO, Google Ads, social media marketing and content marketing that bring qualified traffic and measurable results. Digital marketing services by Worklancers.' },
-  'ecommerce-solutions': { title: 'Shopify & WooCommerce Store Development', description: 'Online stores built on Shopify and WooCommerce with payment gateways, product setup and fast checkout. E-commerce development by Worklancers.' },
-  'ai-automation': { title: 'AI Chatbots & Business Automation Services', description: 'AI chatbots, AI agents and workflow automation that cut manual work and answer customers 24/7. Practical AI solutions from Worklancers.' },
+  'web-development': { title: 'Web Development Company in Pakistan', description: 'Fast custom websites, MERN web apps, WordPress and e-commerce sites that bring in leads. Fixed-price quotes from Worklancer, a software house in Pakistan.' },
+  'mobile-app-development': { title: 'Mobile App Development (Android & iOS)', description: 'Android, iOS and React Native app development for startups and businesses. One codebase, clean UI and API integration. Get a free estimate from Worklancer.' },
+  'graphic-design-branding': { title: 'Logo, Branding & UI/UX Design Services', description: 'Logo design, brand identity, UI/UX design and social media graphics that make your business look trusted and professional. Branding services by Worklancer.' },
+  'digital-marketing-seo': { title: 'SEO & Digital Marketing Services', description: 'SEO, Google Ads, social media marketing and content marketing that bring qualified traffic and measurable results. Digital marketing services by Worklancer.' },
+  'ecommerce-solutions': { title: 'Shopify & WooCommerce Store Development', description: 'Online stores built on Shopify and WooCommerce with payment gateways, product setup and fast checkout. E-commerce development by Worklancer.' },
+  'ai-automation': { title: 'AI Chatbots & Business Automation Services', description: 'AI chatbots, AI agents and workflow automation that cut manual work and answer customers 24/7. Practical AI solutions from Worklancer.' },
 };
 
 // Long-form copy for each service page: intro, who it's for, how we deliver, and service FAQs.

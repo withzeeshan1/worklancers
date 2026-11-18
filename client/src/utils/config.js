@@ -1,7 +1,7 @@
 import { normalizeSiteUrl } from './siteUrl';
 
 export const SITE = {
-  name: 'WORKLANCERS',
+  name: 'WORKLANCER',
   tagline: 'We Build. We Design. We Grow.',
   email: import.meta.env.VITE_CONTACT_EMAIL || 'worklancer.org@gmail.com',
   whatsapp: import.meta.env.VITE_WHATSAPP_NUMBER || '923356665416',
@@ -14,5 +14,5 @@ export const SITE = {
   // (or set VITE_RECAPTCHA_ENABLED=true in the hosting settings).
   recaptchaEnabled: (import.meta.env.VITE_RECAPTCHA_ENABLED || 'false') === 'true',
 };
-export const whatsappLink = (text = 'Hello Worklancers, I would like to discuss a project.') =>
+export const whatsappLink = (text = 'Hello Worklancer, I would like to discuss a project.') =>
   `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(text)}`;

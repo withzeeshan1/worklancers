@@ -1,8 +1,8 @@
-// Structured data (schema.org JSON-LD) so search engines understand who Worklancers is
+// Structured data (schema.org JSON-LD) so search engines understand who Worklancer is
 // and can show rich results (FAQs, breadcrumbs, articles).
 import { SITE } from '../utils/config';
 
-export const BRAND = 'Worklancers';
+export const BRAND = 'Worklancer';
 export const siteUrl = (path = '') => `${SITE.url.replace(/\/$/, '')}${path === '/' ? '' : path}`;
 const ORG_ID = () => `${siteUrl()}/#organization`;
 
@@ -12,7 +12,7 @@ export function organization() {
     '@type': 'ProfessionalService',
     '@id': ORG_ID(),
     name: BRAND,
-    alternateName: 'Worklancers Software House',
+    alternateName: 'Worklancer Software House',
     description: 'Software house and digital agency building websites, custom software, mobile apps, e-commerce stores and AI automation for growing businesses.',
     url: siteUrl('/'),
     logo: siteUrl('/worklancer-logo.png'),

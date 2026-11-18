@@ -25,7 +25,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 px-3 pt-3 sm:px-6">
       <nav aria-label="Main"
         className={`mx-auto flex h-16 max-w-6xl items-center justify-between rounded-full border px-3 pl-5 transition-all duration-500 ${scrolled || open ? 'border-white/10 bg-[#0B0B12]/85 shadow-lg shadow-black/40 backdrop-blur-xl' : 'border-white/10 bg-black/40 backdrop-blur-md'}`}>
-        <Link to="/" aria-label="Worklancers home"><Logo /></Link>
+        <Link to="/" aria-label="Worklancer home"><Logo /></Link>
         <div className="hidden items-center gap-1 lg:flex">
           {links.map(([to, label]) => (
             <NavLink key={to} to={to} end={to === '/'} className={({ isActive }) => `relative rounded-full px-3.5 py-1.5 text-sm font-medium transition ${isActive ? 'text-white' : 'text-slate-300 hover:text-white'}`}>

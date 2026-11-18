@@ -2,7 +2,7 @@ import { m } from 'framer-motion';
 
 // Decorative editor window whose lines "type" in one after another.
 const lines = [
-  [['const ', 'text-pink-400'], ['project', 'text-sky-300'], [' = ', 'text-slate-400'], ['await ', 'text-pink-400'], ['worklancers', 'text-emerald-300'], ['.build({', 'text-slate-300']],
+  [['const ', 'text-pink-400'], ['project', 'text-sky-300'], [' = ', 'text-slate-400'], ['await ', 'text-pink-400'], ['worklancer', 'text-emerald-300'], ['.build({', 'text-slate-300']],
   [['  idea: ', 'text-slate-400'], ["'your-next-big-thing'", 'text-amber-300'], [',', 'text-slate-400']],
   [['  stack: ', 'text-slate-400'], ["['React', 'Node', 'MongoDB']", 'text-amber-300'], [',', 'text-slate-400']],
   [['  deadline: ', 'text-slate-400'], ["'on time'", 'text-amber-300'], [',', 'text-slate-400']],

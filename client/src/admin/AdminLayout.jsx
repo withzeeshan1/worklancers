@@ -23,7 +23,7 @@ export default function AdminLayout() {
   );
   return (
     <div className="min-h-screen bg-surface">
-      <Helmet><title>Admin | WORKLANCERS</title><meta name="robots" content="noindex" /></Helmet>
+      <Helmet><title>Admin | WORKLANCER</title><meta name="robots" content="noindex" /></Helmet>
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-60 md:block">{sidebar}</aside>
       {open && <div className="fixed inset-0 z-40 md:hidden"><div className="absolute inset-0 bg-black/40" onClick={() => setOpen(false)} /><div className="absolute inset-y-0 left-0 w-60">{sidebar}</div></div>}
       <div className="md:pl-60">

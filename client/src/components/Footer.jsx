@@ -34,7 +34,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <p aria-hidden="true" className="pointer-events-none relative select-none bg-gradient-to-b from-white/[0.09] to-transparent bg-clip-text text-center text-[19vw] font-semibold leading-[0.8] tracking-tighter text-transparent">worklancers</p>
+      <p aria-hidden="true" className="pointer-events-none relative select-none bg-gradient-to-b from-white/[0.09] to-transparent bg-clip-text text-center text-[19vw] font-semibold leading-[0.8] tracking-tighter text-transparent">worklancer</p>
       <div className="relative border-t border-line">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-6 text-xs text-muted sm:px-6 lg:px-8">
           <p>© {year} {SITE.name}. All rights reserved.</p>

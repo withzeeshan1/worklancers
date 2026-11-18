@@ -44,7 +44,7 @@ export default function ServiceDetail() {
           <m.span initial={{ rotate: -20, scale: 0 }} animate={{ rotate: 0, scale: 1 }} transition={{ type: 'spring', delay: 0.4 }}
             className="grid h-14 w-14 place-items-center rounded-2xl bg-primary text-white shadow-lg shadow-primary/30"><Icon size={26} aria-hidden="true" /></m.span>
           <Button to="/contact" state={{ service: service.title }}>Get a Free Quote <ArrowRight size={16} /></Button>
-          <Button href={whatsappLink(`Hello Worklancers, I'm interested in ${service.title}.`)} variant="outline"><MessageCircle size={16} className="text-[#25D366]" /> Ask on WhatsApp</Button>
+          <Button href={whatsappLink(`Hello Worklancer, I'm interested in ${service.title}.`)} variant="outline"><MessageCircle size={16} className="text-[#25D366]" /> Ask on WhatsApp</Button>
         </div>
       </PageHeader>
       {details && (
@@ -102,7 +102,7 @@ export default function ServiceDetail() {
         </>
       )}
       <Section className="section-alt">
-        <SectionHeading eyebrow="Also from Worklancers" title="Services that pair well" />
+        <SectionHeading eyebrow="Also from Worklancer" title="Services that pair well" />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {related.map((s, i) => <Reveal key={s.slug} delay={i * 0.1} className="h-full"><ServiceCard service={s} /></Reveal>)}
         </div>
