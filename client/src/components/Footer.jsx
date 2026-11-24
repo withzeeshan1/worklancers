@@ -5,7 +5,7 @@ import { services } from '../services/content';
 import { Logo } from './Navbar';
 
 const year = new Date().getFullYear();
-const company = [['/about', 'About'], ['/#audit', 'Free Website Audit'], ['/portfolio', 'Work'], ['/blog', 'Blog'], ['/contact', 'Contact']];
+const company = [['/about', 'About'], ['/team', 'Our Team'], ['/#audit', 'Free Website Audit'], ['/portfolio', 'Work'], ['/blog', 'Blog'], ['/contact', 'Contact']];
 
 export default function Footer() {
   return (

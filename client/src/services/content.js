@@ -509,3 +509,23 @@ export const serviceDetails = {
     ],
   },
 };
+
+// ---------------- Team page (/team) ----------------
+// Photos: portrait WebP, 600×750, in public/images/team/ (e.g. '/images/team/ali-khan.webp').
+// `photo` and `linkedin` are optional: without a photo the card shows the person's initials.
+// The "Our Founders" section only appears when `founders` has someone in it.
+export const team = {
+  founders: [
+    { name: 'Zeeshan Sajjad', role: 'Founder & CEO', photo: '/images/team/zeeshan-sajjad.webp', linkedin: '' },
+    { name: 'Muhammad Asif', role: 'Co-Founder', photo: '/images/team/muhammad-asif.webp', linkedin: '' },
+  ],
+  members: [
+    { name: 'Dewind Baig', role: 'Project Manager', photo: '/images/team/dewind-baig.webp', linkedin: '' },
+    { name: 'Kyle Beth', role: 'Full Stack Developer', photo: '/images/team/kyle-beth.webp', linkedin: '' },
+    { name: 'Ben Julli', role: 'SEO Expert', photo: '/images/team/ben-julli.webp', linkedin: '' },
+    { name: 'Zend Todd', role: 'SEO Expert', photo: '/images/team/zend-todd.webp', linkedin: '' },
+    { name: 'Dennis', role: 'UI/UX Designer', photo: '/images/team/dennis.webp', linkedin: '' },
+    { name: 'Hodd', role: 'Software Developer', photo: '/images/team/hodd.webp', linkedin: '' },
+    { name: 'Herry Bagen', role: 'Mobile App Developer', photo: '/images/team/herry-bagen.webp', linkedin: '' },
+  ],
+};

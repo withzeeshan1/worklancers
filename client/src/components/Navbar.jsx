@@ -5,7 +5,7 @@ import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { Button } from './ui';
 import Logo from './Logo';
 
-const links = [['/', 'Home'], ['/services', 'Services'], ['/custom-software', 'Software'], ['/portfolio', 'Work'], ['/about', 'About'], ['/blog', 'Blog'], ['/contact', 'Contact']];
+const links = [['/', 'Home'], ['/services', 'Services'], ['/custom-software', 'Software'], ['/portfolio', 'Work'], ['/about', 'About'], ['/team', 'Team'], ['/blog', 'Blog'], ['/contact', 'Contact']];
 
 export { default as Logo } from './Logo';
 
@@ -28,7 +28,7 @@ export default function Navbar() {
         <Link to="/" aria-label="Worklancers home"><Logo /></Link>
         <div className="hidden items-center gap-1 lg:flex">
           {links.map(([to, label]) => (
-            <NavLink key={to} to={to} end={to === '/'} className={({ isActive }) => `relative rounded-full px-3.5 py-1.5 text-sm font-medium transition ${isActive ? 'text-white' : 'text-slate-300 hover:text-white'}`}>
+            <NavLink key={to} to={to} end={to === '/'} className={({ isActive }) => `relative rounded-full px-2.5 py-1.5 text-sm font-medium transition xl:px-3.5 ${isActive ? 'text-white' : 'text-slate-300 hover:text-white'}`}>
               {({ isActive }) => (
                 <>
                   {isActive && <m.span layoutId="nav-pill" className="absolute inset-0 rounded-full bg-white/[0.12] ring-1 ring-white/15" transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
@@ -39,7 +39,7 @@ export default function Navbar() {
           ))}
         </div>
         <div className="flex items-center gap-2">
-          <Button to="/contact" className="hidden !px-4 !py-2 sm:inline-flex">Start a project <ArrowUpRight size={15} className="transition group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" /></Button>
+          <Button to="/contact" className="hidden whitespace-nowrap !px-4 !py-2 sm:inline-flex">Start a project <ArrowUpRight size={15} className="transition group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" /></Button>
           <button className="grid h-10 w-10 place-items-center rounded-full text-fg hover:bg-white/5 lg:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu" aria-expanded={open}>
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>

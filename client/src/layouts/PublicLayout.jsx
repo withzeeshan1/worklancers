@@ -44,7 +44,9 @@ export default function PublicLayout() {
         <div className="flex min-h-screen flex-col">
           <m.div className="fixed inset-x-0 top-0 z-[60] h-0.5 origin-left bg-gradient-to-r from-violet-500 via-fuchsia-400 to-sky-400" style={{ scaleX: progress }} aria-hidden="true" />
           <Navbar />
-          <m.main key={pathname} className="flex-1" initial={pathname === landingPath ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, ease: 'easeOut' }}>
+          {/* overflow-x-clip: elements waiting to slide in from the side must not make phones scroll sideways
+              (clip, unlike hidden, leaves vertical overflow and the sticky header alone) */}
+          <m.main key={pathname} className="flex-1 overflow-x-clip" initial={pathname === landingPath ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, ease: 'easeOut' }}>
             {/* pages are loaded on demand; the pre-rendered HTML stays on screen until the page code arrives */}
             <Suspense fallback={null}><Outlet /></Suspense>
           </m.main>

@@ -5,6 +5,7 @@ import Home from './pages/Home';
 
 // Home ships in the main bundle; every other page loads its own code only when visited.
 const About = lazy(() => import('./pages/About'));
+const Team = lazy(() => import('./pages/Team'));
 const Services = lazy(() => import('./pages/Services'));
 const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
@@ -21,6 +22,7 @@ export default function App() {
       <Route element={<PublicLayout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
+        <Route path="team" element={<Team />} />
         <Route path="services" element={<Services />} />
         <Route path="services/:slug" element={<ServiceDetail />} />
         <Route path="portfolio" element={<Portfolio />} />

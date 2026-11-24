@@ -79,3 +79,22 @@ export function blogPosting(post) {
     inLanguage: 'en',
   };
 }
+
+// Team page: each person with their job title, linked to the organization.
+export function teamPage(people) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: `Our Team | ${BRAND}`,
+    url: siteUrl('/team'),
+    about: { '@id': ORG_ID() },
+    mainEntity: people.map((p) => ({
+      '@type': 'Person',
+      name: p.name,
+      jobTitle: p.role,
+      worksFor: { '@id': ORG_ID() },
+      ...(p.photo && { image: siteUrl(p.photo) }),
+      ...(p.linkedin && { sameAs: [p.linkedin] }),
+    })),
+  };
+}
