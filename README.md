@@ -39,6 +39,10 @@ Settings are baked in at build time, so rebuild after changing `.env`.
     cd client
     npm run build               # output: client/dist/
 
+After a deploy is live, tell Bing/Yandex (IndexNow) to re-crawl the pages:
+
+    npm run indexnow            # submits every URL in the live sitemap.xml
+
 Upload the **contents** of `client/dist/` (including the hidden `.htaccess` file) to your host:
 - **cPanel / Apache / MAMP:** upload to `public_html/` (or the htdocs root). `.htaccess` makes links like
   /services/web-development work on refresh. The site must be at the domain root, not in a subfolder.

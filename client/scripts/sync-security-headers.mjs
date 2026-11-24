@@ -42,6 +42,10 @@ Options -Indexes
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+  # One address for search engines: www.example.com -> https://example.com (straight to HTTPS, one hop).
+  # Matches the canonical links, which use VITE_SITE_URL without "www".
+  RewriteCond %{HTTP_HOST} ^www\\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
   # Always use HTTPS (skipped on localhost; also respects proxies such as Cloudflare).
   RewriteCond %{HTTPS} off
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
