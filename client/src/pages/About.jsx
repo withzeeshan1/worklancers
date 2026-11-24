@@ -12,12 +12,12 @@ const expertise = ['Web & MERN development', 'Custom software & SaaS', 'Mobile a
 export default function About() {
   return (
     <>
-      <Seo title="About Us: Software House in Pakistan" path="/about" image="/images/dev-team.webp" description="Worklancers is a software house and digital agency in Pakistan. One accountable team for web, software, mobile apps, design and marketing. Our story and values." jsonLd={breadcrumbs([['Home', '/'], ['About', '/about']])} />
+      <Seo title="About Us: Software House in Pakistan" path="/about" image="/images/dev-team.webp" description="Worklancer is a software house and digital agency in Pakistan. One accountable team for web, software, mobile apps, design and marketing. Our story and values." jsonLd={breadcrumbs([['Home', '/'], ['About', '/about']])} />
       <PageHeader image="/images/dev-team.webp" eyebrow="About us" title="A Software House That Builds Like a Partner, Not a Vendor" text="We help businesses build, design and grow online with one accountable team." />
       <Section>
         <div className="grid gap-10 lg:grid-cols-2">
           <Reveal from="right"><h2 className="text-2xl sm:text-3xl">Our story</h2>
-            <p className="mt-4 leading-relaxed text-muted">Worklancers was created to give businesses a single, dependable partner for their digital needs. Instead of juggling separate developers, designers and marketers, clients get one coordinated team that understands the whole picture.</p>
+            <p className="mt-4 leading-relaxed text-muted">Worklancer was created to give businesses a single, dependable partner for their digital needs. Instead of juggling separate developers, designers and marketers, clients get one coordinated team that understands the whole picture.</p>
             <p className="mt-4 leading-relaxed text-muted">We work with startups, small and medium businesses, e-commerce brands and international clients, with a strong focus on the needs of Pakistani businesses going digital.</p></Reveal>
           <div className="grid gap-6 sm:grid-cols-2">
             {[['Mission', Target, 'To help businesses grow through well-built, well-designed and well-marketed digital products.'], ['Vision', Eye, 'To be a trusted international software and creative agency known for quality and honesty.']].map(([t, Icon, d], i) => (

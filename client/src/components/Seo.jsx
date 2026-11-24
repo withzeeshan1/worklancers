@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { BRAND, siteUrl } from '../seo/schema';
 
-const DEFAULT_TITLE = 'Worklancers | Software House & Web Development Company';
+const DEFAULT_TITLE = 'Worklancer | Software House & Web Development Company';
 const DEFAULT_IMAGE = '/og-image.jpg';
 
 // Per-page SEO tags: title, description, canonical URL, social share previews

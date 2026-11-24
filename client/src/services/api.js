@@ -56,7 +56,7 @@ export async function submitLead(payload) {
   }
 
   const lead = Object.fromEntries(Object.keys(LABELS).map((k) => [k, clean(k, payload[k])]));
-  const viaWhatsapp = () => ({ sent: false, whatsappUrl: whatsappLink(`Hello Worklancers, I'd like to get in touch.\n\n${toText(lead)}`) });
+  const viaWhatsapp = () => ({ sent: false, whatsappUrl: whatsappLink(`Hello Worklancer, I'd like to get in touch.\n\n${toText(lead)}`) });
 
   if (!SITE.web3formsKey) return viaWhatsapp();
 

@@ -14,7 +14,7 @@ export default function Blog() {
   const shown = active === 'All' ? posts : posts.filter((p) => p.category === active);
   return (
     <>
-      <Seo title="Blog: Web Development, SEO & AI Tips" path="/blog" image="/images/code-closeup.webp" description="Practical guides on choosing a web development agency, SEO for new websites and using AI automation in your business, from the Worklancers team." jsonLd={breadcrumbs([['Home', '/'], ['Blog', '/blog']])} />
+      <Seo title="Blog: Web Development, SEO & AI Tips" path="/blog" image="/images/code-closeup.webp" description="Practical guides on choosing a web development agency, SEO for new websites and using AI automation in your business, from the Worklancer team." jsonLd={breadcrumbs([['Home', '/'], ['Blog', '/blog']])} />
       <PageHeader image="/images/code-closeup.webp" eyebrow="Insights" title="Blog" text="Practical tips on building and growing your digital presence." />
       <Section>
         <div className="mb-10 flex flex-wrap gap-2">

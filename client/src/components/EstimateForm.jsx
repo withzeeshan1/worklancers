@@ -41,7 +41,7 @@ export default function EstimateForm({ projectTypes }) {
         {status?.ok ? (
           <m.div key="done" className="py-6">
             <h3 className="mb-4 text-center text-xl">Thanks! We've got your project details.</h3>
-            <FormSuccess result={status.result} sentText="Expect a reply with next steps within 24 hours." whatsappText="Hi Worklancers, I just sent a custom software estimate request." />
+            <FormSuccess result={status.result} sentText="Expect a reply with next steps within 24 hours." whatsappText="Hi Worklancer, I just sent a custom software estimate request." />
           </m.div>
         ) : (
           <m.form key="form" exit={{ opacity: 0 }} onFocusCapture={primeRecaptcha} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">

@@ -1,4 +1,4 @@
-# WORKLANCERS - Frontend
+# WORKLANCER - Frontend
 
 React + Vite + Tailwind CSS public website.
 

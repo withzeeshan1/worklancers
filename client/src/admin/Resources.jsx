@@ -20,7 +20,7 @@ export const ProjectsAdmin = () => (
 );
 
 export const BlogsAdmin = () => (
-  <ResourceManager title="Blog posts" noun="post" endpoint="blogs" defaults={{ isPublished: false, authorName: 'Worklancers Team' }}
+  <ResourceManager title="Blog posts" noun="post" endpoint="blogs" defaults={{ isPublished: false, authorName: 'Worklancer Team' }}
     fields={[{ name: 'title', label: 'Title', type: 'text', required: true }, { name: 'excerpt', label: 'Excerpt', type: 'textarea', required: true, rows: 2 },
       { name: 'content', label: 'Content', type: 'textarea', required: true, rows: 10, hint: 'blank line between paragraphs' }, { name: 'category', label: 'Category', type: 'text', required: true },
       { name: 'authorName', label: 'Author name', type: 'text' }, { name: 'featuredImage', label: 'Featured image', type: 'image' },

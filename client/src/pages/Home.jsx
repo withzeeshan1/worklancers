@@ -25,7 +25,7 @@ export default function Home() {
 
   return (
     <>
-      <Seo path="/" description="Worklancers is a software house in Pakistan building websites, custom software, mobile apps and AI automation for businesses worldwide. Free website audit." jsonLd={[website(), faqPage(faqs)]} />
+      <Seo path="/" description="Worklancer is a software house in Pakistan building websites, custom software, mobile apps and AI automation for businesses worldwide. Free website audit." jsonLd={[website(), faqPage(faqs)]} />
       {/* HERO */}
       <section className="relative -mt-24 overflow-hidden pt-24">
         <FadeImage priority src="/images/hero-code.webp" overlay="bg-gradient-to-b from-black/70 via-black/55 to-black/70" position="center 40%" />
@@ -118,7 +118,7 @@ export default function Home() {
 
       {/* PROMISES BENTO */}
       <Section>
-        <SectionHeading eyebrow="Why Worklancers" title={<>Built on promises <em className="accent text-gradient">we keep</em></>} />
+        <SectionHeading eyebrow="Why Worklancer" title={<>Built on promises <em className="accent text-gradient">we keep</em></>} />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {guarantees.map((g, i) => (
             <Reveal key={g.label} delay={i * 0.08} className="h-full">

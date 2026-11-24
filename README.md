@@ -1,4 +1,4 @@
-# WORKLANCERS - Digital Agency Website (static)
+# WORKLANCER - Digital Agency Website (static)
 
     worklancers/
       client/   The website: React + Vite + Tailwind + Framer Motion. Builds to plain static files.

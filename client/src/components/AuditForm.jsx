@@ -44,7 +44,7 @@ export default function AuditForm({ dark = false }) {
 
       <AnimatePresence mode="wait">
         {status?.ok ? (
-          <m.div key="done"><FormSuccess result={status.result} sentText="We will email your audit within 24 hours." whatsappText="Hi Worklancers, I just requested a free website audit." /></m.div>
+          <m.div key="done"><FormSuccess result={status.result} sentText="We will email your audit within 24 hours." whatsappText="Hi Worklancer, I just requested a free website audit." /></m.div>
         ) : (
           <m.form key="form" exit={{ opacity: 0 }} onFocusCapture={primeRecaptcha} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-3">
             <Honeypot register={register} />

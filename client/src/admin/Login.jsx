@@ -20,7 +20,7 @@ export default function Login() {
   const input = 'mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20';
   return (
     <div className="grid min-h-screen place-items-center bg-primary-light px-4">
-      <Helmet><title>Admin Login | WORKLANCERS</title><meta name="robots" content="noindex" /></Helmet>
+      <Helmet><title>Admin Login | WORKLANCER</title><meta name="robots" content="noindex" /></Helmet>
       <form onSubmit={submit} className="w-full max-w-sm rounded-xl2 bg-white p-8 shadow-soft">
         <p className="text-center text-2xl font-bold text-navy">WORK<span className="text-primary">LANCERS</span></p>
         <h1 className="mt-1 mb-6 text-center text-sm font-normal text-muted">Admin sign in</h1>

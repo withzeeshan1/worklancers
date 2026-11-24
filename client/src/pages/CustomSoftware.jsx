@@ -77,7 +77,7 @@ export default function CustomSoftware() {
             </m.p>
             <m.div initial={{ y: 16 }} animate={{ y: 0 }} transition={{ delay: 0.5 }} className="mt-8 flex flex-wrap gap-4">
               <Button href="#estimate" target="_self" className="shadow-lg shadow-primary/40">Get a Free Estimate <ArrowRight size={16} /></Button>
-              <Button href={whatsappLink('Hello Worklancers, I would like to discuss a software project.')} variant="light"><MessageCircle size={16} className="text-[#25D366]" /> Talk on WhatsApp</Button>
+              <Button href={whatsappLink('Hello Worklancer, I would like to discuss a software project.')} variant="light"><MessageCircle size={16} className="text-[#25D366]" /> Talk on WhatsApp</Button>
             </m.div>
             <m.ul initial={{ y: 8 }} animate={{ y: 0 }} transition={{ delay: 0.7 }} className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300">
               {['NDA on request', 'You own the code', 'Fixed-price or monthly'].map((t) => <li key={t} className="flex items-center gap-1.5"><Check size={16} className="text-emerald-400" />{t}</li>)}
@@ -128,7 +128,7 @@ export default function CustomSoftware() {
       <Section>
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <Reveal from="right">
-            <SectionHeading center={false} eyebrow="Why Worklancers" title="The quality you expect, at a price that makes sense" text="We combine solid engineering practices with honest communication, so you always know where your project stands." />
+            <SectionHeading center={false} eyebrow="Why Worklancer" title="The quality you expect, at a price that makes sense" text="We combine solid engineering practices with honest communication, so you always know where your project stands." />
           </Reveal>
           <div className="grid gap-5 sm:grid-cols-2">
             {reasons.map(({ icon: Icon, title, text }, i) => (

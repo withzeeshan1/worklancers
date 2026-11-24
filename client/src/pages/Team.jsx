@@ -14,17 +14,17 @@ export default function Team() {
   const half = Math.ceil(everyone.length / 2);
   return (
     <>
-      <Seo title="Our Team: The People Behind Worklancers" path="/team" image="/images/hero-team.webp"
-        description="Meet the Worklancers team: the founders, developers, designers and marketers who build websites, custom software, mobile apps and marketing for our clients."
+      <Seo title="Our Team: The People Behind Worklancer" path="/team" image="/images/hero-team.webp"
+        description="Meet the Worklancer team: the founders, developers, designers and marketers who build websites, custom software, mobile apps and marketing for our clients."
         jsonLd={[breadcrumbs([['Home', '/'], ['Our Team', '/team']]), teamPage(everyone)]} />
-      <PageHeader image="/images/hero-team.webp" overlay="bg-gradient-to-r from-surface via-surface/85 to-surface/50 sm:via-surface/75 sm:to-transparent" eyebrow="Our team" title="The People Behind Worklancers" text="Developers, designers and marketers working as one team for your business." />
+      <PageHeader image="/images/hero-team.webp" overlay="bg-gradient-to-r from-surface via-surface/85 to-surface/50 sm:via-surface/75 sm:to-transparent" eyebrow="Our team" title="The People Behind Worklancer" text="Developers, designers and marketers working as one team for your business." />
 
       {/* Intro */}
       <Section>
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal from="right">
             <div className="relative overflow-hidden rounded-[1.75rem] border border-line shadow-soft">
-              <img src="/images/hero-office.webp" alt="The Worklancers team at work in the office" width="1000" height="667" loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
+              <img src="/images/hero-office.webp" alt="The Worklancer team at work in the office" width="1000" height="667" loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-violet-900/30 via-transparent to-transparent" aria-hidden="true" />
             </div>
           </Reveal>
