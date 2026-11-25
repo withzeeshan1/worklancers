@@ -1,14 +1,14 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig, loadEnv } from 'vite'
 import { allRoutes } from './src/seo/routes.js'
-import { securityHeaders } from './security-headers.js'
+import { securityHeadersFor } from './security-headers.js'
 import { normalizeSiteUrl } from './src/utils/siteUrl.js'
 
 // Writes sitemap.xml and robots.txt into the build, using VITE_SITE_URL as the domain.
 function seoFiles(siteUrl) {
   const url = normalizeSiteUrl(siteUrl)
   const today = new Date().toISOString().slice(0, 10)
-  const priority = (p) => (p === '/' ? '1.0' : p.split('/').length === 2 ? '0.8' : '0.6')
+  const priority = (p) => (p === '/' ? '1.0' : p === '/privacy-policy' ? '0.3' : p.split('/').length === 2 ? '0.8' : '0.6')
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${allRoutes.map((p) => `  <url><loc>${url}${p === '/' ? '/' : p}</loc><lastmod>${today}</lastmod><priority>${priority(p)}</priority></url>`).join('\n')}\n</urlset>\n`
   return {
     name: 'seo-files',
@@ -29,7 +29,7 @@ function seoFiles(siteUrl) {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   // `vite preview` sends the production security headers (minus HTTPS-only ones) so they can be tested locally.
-  const { 'Strict-Transport-Security': _hsts, ...previewHeaders } = securityHeaders
+  const { 'Strict-Transport-Security': _hsts, ...previewHeaders } = securityHeadersFor(env)
   previewHeaders['Content-Security-Policy'] = previewHeaders['Content-Security-Policy'].replace('; upgrade-insecure-requests', '')
   return { plugins: [react(), seoFiles(env.VITE_SITE_URL)], preview: { headers: previewHeaders } }
 })

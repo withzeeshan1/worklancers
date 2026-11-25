@@ -13,6 +13,9 @@ export const SITE = {
   // reCAPTCHA token. Switch this to true only after upgrading and saving the secret key in Web3Forms
   // (or set VITE_RECAPTCHA_ENABLED=true in the hosting settings).
   recaptchaEnabled: (import.meta.env.VITE_RECAPTCHA_ENABLED || 'false') === 'true',
+  // Cloudflare Web Analytics token (cookie-free visitor counts). Empty = no analytics at all.
+  // Get it from Cloudflare: Analytics & Logs > Web Analytics > Add a site.
+  cfAnalyticsToken: (import.meta.env.VITE_CF_ANALYTICS_TOKEN || '').trim(),
 };
 export const whatsappLink = (text = 'Hello Worklancer, I would like to discuss a project.') =>
   `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(text)}`;

@@ -3,10 +3,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { securityHeaders } from '../security-headers.js';
+import { loadEnv } from 'vite';
+import { securityHeadersFor } from '../security-headers.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const entries = Object.entries(securityHeaders);
+// Site settings from client/.env and the hosting's environment variables (same as the build uses).
+const env = loadEnv('production', root, 'VITE_');
+const entries = Object.entries(securityHeadersFor(env));
 const write = (rel, text) => fs.writeFileSync(path.join(root, rel), text);
 
 // ---- Netlify: public/_headers
@@ -97,4 +100,4 @@ ErrorDocument 404 /404.html
 </IfModule>
 `);
 
-console.log(`Security headers synced (${entries.length} headers) -> public/.htaccess, public/_headers, vercel.json`);
+console.log(`Security headers synced (${entries.length} headers${env.VITE_CF_ANALYTICS_TOKEN ? ', Cloudflare analytics allowed' : ''}) -> public/.htaccess, public/_headers, vercel.json`);

@@ -4,32 +4,40 @@
 // and `vite preview` sends them too, so they can be tested locally.
 
 // Content Security Policy: only the site's own files may load or run.
-// - Outside services the browser may contact: Web3Forms (contact forms) and Google reCAPTCHA
-//   (only its /recaptcha/ paths, loaded once a visitor starts filling in a form).
+// - Outside services the browser may contact: Web3Forms (contact forms), Google reCAPTCHA
+//   (only its /recaptcha/ paths, loaded once a visitor starts filling in a form) and, only when
+//   VITE_CF_ANALYTICS_TOKEN is set, Cloudflare Web Analytics (cookie-free visitor counts).
 // - style-src-elem 'self' blocks injected <style> blocks; style-src-attr allows the inline
 //   style attributes set by the animation library. style-src is the fallback for older browsers.
 const recaptchaScripts = 'https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/';
 const recaptchaFrames = 'https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/';
+const analyticsScript = 'https://static.cloudflareinsights.com';
+const analyticsConnect = 'https://cloudflareinsights.com';
 
-export const csp = [
-  "default-src 'self'",
-  `script-src 'self' ${recaptchaScripts}`,
-  "style-src 'self' 'unsafe-inline'",
-  "style-src-elem 'self'",
-  "style-src-attr 'unsafe-inline'",
-  "img-src 'self' data:",
-  "font-src 'self'",
-  "connect-src 'self' https://api.web3forms.com https://www.google.com/recaptcha/",
-  "media-src 'none'",
-  `frame-src ${recaptchaFrames}`,
-  "worker-src 'none'",
-  "manifest-src 'self'",
-  "object-src 'none'",
-  "base-uri 'self'",
-  "form-action 'self'",
-  "frame-ancestors 'none'",
-  'upgrade-insecure-requests',
-].join('; ');
+// `env` = the site settings (VITE_... values), so Cloudflare is only allowed when analytics is switched on.
+export function securityHeadersFor(env = {}) {
+  const analytics = Boolean(env.VITE_CF_ANALYTICS_TOKEN);
+  const csp = [
+    "default-src 'self'",
+    `script-src 'self' ${recaptchaScripts}${analytics ? ` ${analyticsScript}` : ''}`,
+    "style-src 'self' 'unsafe-inline'",
+    "style-src-elem 'self'",
+    "style-src-attr 'unsafe-inline'",
+    "img-src 'self' data:",
+    "font-src 'self'",
+    `connect-src 'self' https://api.web3forms.com https://www.google.com/recaptcha/${analytics ? ` ${analyticsConnect}` : ''}`,
+    "media-src 'none'",
+    `frame-src ${recaptchaFrames}`,
+    "worker-src 'none'",
+    "manifest-src 'self'",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'none'",
+    'upgrade-insecure-requests',
+  ].join('; ');
+  return headers(csp);
+}
 
 // Browser features the site never needs are switched off for it and anything embedded in it.
 const permissionsPolicy = [
@@ -39,7 +47,7 @@ const permissionsPolicy = [
   'xr-spatial-tracking=()',
 ].join(', ');
 
-export const securityHeaders = {
+const headers = (csp) => ({
   'Content-Security-Policy': csp,
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
@@ -50,4 +58,4 @@ export const securityHeaders = {
   'X-Permitted-Cross-Domain-Policies': 'none',
   // HTTPS only, for 2 years. Add "; includeSubDomains" once every subdomain also has HTTPS.
   'Strict-Transport-Security': 'max-age=63072000',
-};
+});

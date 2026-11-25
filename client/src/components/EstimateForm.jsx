@@ -4,7 +4,7 @@ import { AnimatePresence, m } from 'framer-motion';
 import { ArrowRight, AlertCircle, Loader2 } from 'lucide-react';
 import FormSuccess from './FormSuccess';
 import Honeypot from './Honeypot';
-import RecaptchaNotice from './RecaptchaNotice';
+import FormNotice from './FormNotice';
 import { submitLead } from '../services/api';
 import { primeRecaptcha } from '../services/recaptcha';
 import { budgets } from '../services/content';
@@ -70,7 +70,7 @@ export default function EstimateForm({ projectTypes }) {
               {isSubmitting ? <><Loader2 size={16} className="animate-spin" /> Sending…</> : <>Get my free estimate <ArrowRight size={16} /></>}
             </m.button>
             <p className="text-center text-xs text-muted">We're happy to sign an NDA before you share details.</p>
-            <RecaptchaNotice />
+            <FormNotice />
             {status && !status.ok && <p role="alert" className="flex items-start gap-2 rounded-xl bg-red-500/10 ring-1 ring-red-500/20 px-4 py-3 text-sm text-red-300"><AlertCircle size={18} className="shrink-0" />{status.msg}</p>}
           </m.form>
         )}

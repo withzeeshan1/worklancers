@@ -7,6 +7,7 @@ import { LazyMotion, MotionConfig, domMax, m, useScroll, useSpring } from 'frame
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
+import Analytics from '../components/Analytics';
 import { organization } from '../seo/schema';
 
 export default function PublicLayout() {
@@ -52,6 +53,7 @@ export default function PublicLayout() {
           </m.main>
           <Footer />
           <WhatsAppButton />
+          <Analytics />
         </div>
       </MotionConfig>
     </LazyMotion>

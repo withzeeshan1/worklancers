@@ -2,7 +2,7 @@
 // so a new service, project or blog post in content.js is picked up automatically.
 import { services, projects, posts } from '../services/content.js';
 
-export const staticRoutes = ['/', '/services', '/custom-software', '/portfolio', '/about', '/team', '/blog', '/contact'];
+export const staticRoutes = ['/', '/services', '/custom-software', '/portfolio', '/about', '/team', '/blog', '/contact', '/privacy-policy'];
 
 export const allRoutes = [
   ...staticRoutes,

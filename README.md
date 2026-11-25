@@ -32,6 +32,11 @@ HTML/CSS/JS that you can upload to any web host.
   the token, so leads keep arriving.
   **Never put the secret key in `.env` or anywhere in this repository:** everything in the site's code is public.
   If reCAPTCHA can't load (ad blocker) or flags a visitor, the form hands their message to WhatsApp instead.
+- `VITE_CF_ANALYTICS_TOKEN` (default empty = no analytics): Cloudflare Web Analytics, free visitor statistics
+  without cookies (so no cookie banner). In Cloudflare: Analytics & Logs > Web Analytics > Add a site >
+  `worklancer.org`, choose the JavaScript snippet (the domain doesn't need to use Cloudflare) and copy the
+  `token` value from it. Set it in the hosting settings and redeploy: the build then allows Cloudflare in the
+  security headers, loads the counter after each page has loaded, and the Privacy Policy mentions it.
 
 Settings are baked in at build time, so rebuild after changing `.env`.
 

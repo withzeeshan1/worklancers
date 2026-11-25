@@ -4,7 +4,7 @@ import { AnimatePresence, m } from 'framer-motion';
 import { ArrowRight, AlertCircle, Loader2, Gift } from 'lucide-react';
 import FormSuccess from './FormSuccess';
 import Honeypot from './Honeypot';
-import RecaptchaNotice from './RecaptchaNotice';
+import FormNotice from './FormNotice';
 import { submitLead } from '../services/api';
 import { primeRecaptcha } from '../services/recaptcha';
 
@@ -67,7 +67,7 @@ export default function AuditForm({ dark = false }) {
               className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-b from-violet-500 to-violet-700 px-6 py-3.5 text-sm font-medium text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_8px_30px_-6px_rgb(139_92_246/0.6)] transition hover:brightness-110 disabled:opacity-60">
               {isSubmitting ? <><Loader2 size={16} className="animate-spin" /> Sending…</> : <>Send me my free audit <ArrowRight size={16} /></>}
             </m.button>
-            <RecaptchaNotice />
+            <FormNotice />
             {status && !status.ok && <p role="alert" className="flex items-start gap-2 rounded-xl bg-red-500/10 ring-1 ring-red-500/20 px-4 py-3 text-sm text-red-300"><AlertCircle size={18} className="shrink-0" />{status.msg}</p>}
           </m.form>
         )}

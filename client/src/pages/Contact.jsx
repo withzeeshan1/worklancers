@@ -5,7 +5,7 @@ import { m } from 'framer-motion';
 import { Mail, MessageCircle, AlertCircle, Loader2, Clock } from 'lucide-react';
 import FormSuccess from '../components/FormSuccess';
 import Honeypot from '../components/Honeypot';
-import RecaptchaNotice from '../components/RecaptchaNotice';
+import FormNotice from '../components/FormNotice';
 import Seo from '../components/Seo';
 import { breadcrumbs } from '../seo/schema';
 import { Button, PageHeader, Section } from '../components/ui';
@@ -67,7 +67,7 @@ export default function Contact() {
             <label className="block text-sm font-medium text-fg">Project Description
               <textarea rows={5} placeholder="What do you need, and what should it achieve? e.g. 'A website for my clinic so patients can book online.'" className={field} maxLength={4000} {...register('description', { required: 'Please describe your project', minLength: { value: 20, message: 'A sentence or two is enough (20+ characters)' } })} /><Err e={errors.description} /></label>
             <Button type="submit" disabled={isSubmitting}>{isSubmitting ? <><Loader2 size={16} className="animate-spin" /> Sending...</> : 'Send Request'}</Button>
-            <RecaptchaNotice className="!text-left" />
+            <FormNotice className="!text-left" />
             {status?.ok && <FormSuccess result={status.result} whatsappText="Hi Worklancer, I just sent a project request through your website." />}
             {status && !status.ok && (
               <p role="alert" className="flex items-start gap-2 rounded-xl bg-red-500/10 ring-1 ring-red-500/20 px-4 py-3 text-sm text-red-300"><AlertCircle size={18} className="shrink-0" />{status.msg}</p>

@@ -38,7 +38,10 @@ export default function Footer() {
       <div className="relative border-t border-line">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-6 text-xs text-muted sm:px-6 lg:px-8">
           <p>© {year} {SITE.name}. All rights reserved.</p>
-          <p>{SITE.tagline}</p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <Link to="/privacy-policy" className="transition hover:text-fg">Privacy Policy</Link>
+            <p>{SITE.tagline}</p>
+          </div>
         </div>
       </div>
     </footer>
