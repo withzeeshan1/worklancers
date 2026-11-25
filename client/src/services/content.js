@@ -527,5 +527,7 @@ export const team = {
     { name: 'Dennis', role: 'UI/UX Designer', photo: '/images/team/dennis.webp', linkedin: '' },
     { name: 'Hodd', role: 'Software Developer', photo: '/images/team/hodd.webp', linkedin: '' },
     { name: 'Herry Bagen', role: 'Mobile App Developer', photo: '/images/team/herry-bagen.webp', linkedin: '' },
+    { name: 'Talha Nadeem', role: 'Drupal Developer', photo: '/images/team/talha-nadeem.webp', linkedin: '' },
+    { name: 'Shakir Meer', role: 'AI Engineer', photo: '/images/team/shakir-meer.webp', linkedin: '' },
   ],
 };
