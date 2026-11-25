@@ -20,7 +20,7 @@ export default function Portfolio() {
           {categories.map((c) => (
             <button key={c} onClick={() => setActive(c)} role="tab" aria-selected={active === c}
               className={`relative rounded-full px-5 py-2 text-sm font-medium transition ${active === c ? 'text-white' : 'border border-line bg-card text-ink hover:border-primary'}`}>
-              {active === c && <m.span layoutId="portfolio-pill" className="absolute inset-0 rounded-full bg-primary" transition={{ type: 'spring', stiffness: 400, damping: 30 }} />}
+              {active === c && <m.span layoutId="portfolio-pill" className="absolute inset-0 rounded-full bg-primary-dark" transition={{ type: 'spring', stiffness: 400, damping: 30 }} />}
               <span className="relative">{c}</span>
             </button>
           ))}
@@ -29,7 +29,7 @@ export default function Portfolio() {
           <AnimatePresence>
             {shown.map((p, i) => (
               <m.div key={p.slug} layout initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.35, delay: i * 0.05 }} className="h-full">
-                <ProjectCard project={p} />
+                <ProjectCard project={p} headingLevel="h2" />
               </m.div>
             ))}
           </AnimatePresence>

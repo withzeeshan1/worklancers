@@ -1,3 +1,5 @@
+import { responsive } from '../utils/responsiveImage';
+
 // Full-colour background photo for a section (parent needs `relative overflow-hidden`).
 // The photo itself is shown clearly; `overlay` adds a shade only where text needs contrast.
 // `fade` (optional) softens one edge into the page background.
@@ -11,7 +13,7 @@ const masks = {
 export default function FadeImage({ src, overlay = 'bg-black/50', fade = 'none', position = 'center', zoom = true, priority = false, className = '' }) {
   return (
     <div aria-hidden="true" className={`pointer-events-none absolute inset-0 overflow-hidden ${masks[fade] ?? ''} ${className}`}>
-      <img src={src} alt="" width={1600} height={1067} loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : undefined} decoding="async" style={{ objectPosition: position }}
+      <img {...responsive(src)} alt="" width={1600} height={1067} loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : undefined} decoding="async" style={{ objectPosition: position }}
         className={`h-full w-full object-cover ${zoom ? 'animate-kenburns' : ''}`} />
       {overlay && <div className={`absolute inset-0 ${overlay}`} />}
     </div>

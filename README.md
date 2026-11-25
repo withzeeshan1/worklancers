@@ -54,3 +54,12 @@ All text for services, portfolio, blog posts, FAQs and the home page promises is
 `client/src/services/content.js`. The custom software landing page text is at the top of
 `client/src/pages/CustomSoftware.jsx`. Add real client reviews to `testimonials` in `content.js`
 and the testimonials section appears automatically.
+
+After adding or replacing a photo in `client/public/images/`, make its phone-size copies:
+
+    cd client
+    npm run images              # needs cwebp (macOS: brew install webp)
+
+It writes smaller WebP copies (`name-480w.webp`, `-800w`, `-1200w`) next to each photo and lists them
+in `src/utils/image-srcsets.json`, so phones download a small image instead of the desktop one.
+Commit the copies too. A photo without copies still works; it just isn't resized.

@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { serviceIcons } from '../utils/icons';
+import { responsive } from '../utils/responsiveImage';
+
+const cardSizes = '(min-width: 1280px) 400px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw';
+const wideSizes = '(min-width: 1280px) 800px, (min-width: 1024px) 66vw, (min-width: 640px) 50vw, 100vw';
 
 // `featured` cards are wide in the home-page bento grid and show their sub-services as chips.
 export default function ServiceCard({ service, featured = false }) {
@@ -9,7 +13,7 @@ export default function ServiceCard({ service, featured = false }) {
     <Link to={`/services/${service.slug}`} className="spotlight group relative flex h-full min-h-[220px] flex-col overflow-hidden rounded-xl2 border border-line bg-card p-7 transition duration-300 hover:-translate-y-1">
       {service.image && (
         <>
-          <img src={service.image} alt="" aria-hidden="true" width={1000} height={667} loading="lazy"
+          <img {...responsive(service.image, featured ? wideSizes : cardSizes)} alt="" aria-hidden="true" width={1000} height={667} loading="lazy"
             className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
           {/* photo stays clear at the top; text area below gets a solid shade */}
           <span aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-card via-card/85 to-card/20 transition duration-500 group-hover:to-card/0" />

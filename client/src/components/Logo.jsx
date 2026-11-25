@@ -1,4 +1,4 @@
-import worklancerLogo from '../assets/worklancer-logo.png';
+import worklancerLogo from '../assets/worklancer-logo.webp';
 
 // Logo mark: small square version for favicon-like uses.
 export function LogoMark({ size = 32, className = '' }) {

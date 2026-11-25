@@ -21,14 +21,14 @@ export default function Footer() {
           </div>
         </div>
         <div className="lg:col-span-4">
-          <h3 className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted">Services</h3>
+          <h2 className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted">Services</h2>
           <ul className="space-y-2.5 text-sm">
             {services.map((s) => <li key={s.slug}><Link to={`/services/${s.slug}`} className="text-ink transition hover:text-fg">{s.title}</Link></li>)}
             <li><Link to="/custom-software" className="text-ink transition hover:text-fg">Custom Software</Link></li>
           </ul>
         </div>
         <div className="lg:col-span-3">
-          <h3 className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted">Company</h3>
+          <h2 className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted">Company</h2>
           <ul className="space-y-2.5 text-sm">
             {company.map(([to, l]) => <li key={to}><Link to={to} className="group inline-flex items-center gap-1 text-ink transition hover:text-fg">{l}<ArrowUpRight size={13} className="opacity-0 transition group-hover:opacity-100" /></Link></li>)}
           </ul>

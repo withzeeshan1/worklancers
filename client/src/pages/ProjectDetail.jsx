@@ -9,6 +9,7 @@ import CtaBanner from '../components/CtaBanner';
 import NotFound from './NotFound';
 import { Button, PageHeader, Section, SectionHeading } from '../components/ui';
 import { projects } from '../services/content';
+import { responsive } from '../utils/responsiveImage';
 
 // Which service a visitor most likely wants after viewing this kind of project.
 const quoteService = (p) => (p.type === 'mobile' ? 'Mobile App Development' : p.category === 'AI Platform' ? 'AI & Automation' : 'Web Development');
@@ -35,7 +36,7 @@ export default function ProjectDetail() {
                   <span className="h-2.5 w-2.5 rounded-full bg-red-400" /><span className="h-2.5 w-2.5 rounded-full bg-amber-400" /><span className="h-2.5 w-2.5 rounded-full bg-green-400" />
                   <span className="ml-3 flex h-6 flex-1 items-center rounded-md bg-white/[0.04] px-3 text-[11px] text-slate-400">{hostOf(p.liveUrl || p.title)}</span>
                 </div>
-                <img src={p.image} alt={`${p.title} home page`} width={1200} height={750} className="w-full" />
+                <img {...responsive(p.image, '(min-width: 1280px) 820px, (min-width: 1024px) 66vw, 100vw')} alt={`${p.title} home page`} width={1200} height={750} className="w-full" />
               </figure>
             ) : p.icon ? (
               <div className="group relative h-72 overflow-hidden rounded-xl2 border border-line bg-card sm:h-96"><AppIconCover icon={p.icon} title={p.title} size="lg" /></div>

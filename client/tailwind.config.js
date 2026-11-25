@@ -30,6 +30,7 @@ export default {
         float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
         shine: { from: { backgroundPosition: '200% center' }, to: { backgroundPosition: '-200% center' } },
         kenburns: { from: { transform: 'scale(1)' }, to: { transform: 'scale(1.12)' } },
+        letter: { from: { opacity: '0', transform: 'translateY(0.5em)', filter: 'blur(8px)' }, to: { opacity: '1', transform: 'none', filter: 'none' } },
       },
       animation: {
         marquee: 'marquee 30s linear infinite',
@@ -37,6 +38,7 @@ export default {
         float: 'float 6s ease-in-out infinite',
         shine: 'shine 6s linear infinite',
         kenburns: 'kenburns 24s ease-in-out infinite alternate',
+        letter: 'letter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both',
       },
     },
   },

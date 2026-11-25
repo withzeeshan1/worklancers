@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Gamepad2, Globe } from 'lucide-react';
 import AppIconCover from './AppIconCover';
+import { responsive } from '../utils/responsiveImage';
 
 // Each project gets a distinct gradient "cover" until real screenshots are added.
 const covers = ['from-violet-600 via-fuchsia-500 to-orange-400', 'from-sky-500 via-indigo-500 to-violet-600', 'from-emerald-400 via-teal-500 to-sky-600', 'from-pink-500 via-rose-500 to-amber-400', 'from-indigo-600 via-violet-500 to-sky-400', 'from-cyan-400 via-sky-500 to-indigo-600'];
@@ -11,12 +12,13 @@ function coverFor(slug) {
   return covers[h % covers.length];
 }
 
-export default function ProjectCard({ project }) {
+// `headingLevel`: h3 under a section heading (default), h2 where the cards sit straight under the page title.
+export default function ProjectCard({ project, headingLevel: Heading = 'h3' }) {
   return (
     <Link to={`/portfolio/${project.slug}`} className="spotlight group block h-full overflow-hidden rounded-xl2 border border-line bg-card p-2 transition duration-300 hover:-translate-y-1">
       <div className={`relative grid h-52 place-items-center overflow-hidden rounded-[1rem] bg-gradient-to-br ${coverFor(project.slug)}`}>
         {project.image
-          ? <img src={project.image} alt="" aria-hidden="true" width={1000} height={667} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110" />
+          ? <img {...responsive(project.image, '(min-width: 1280px) 400px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw')} alt="" aria-hidden="true" width={1000} height={667} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110" />
           : project.icon ? <AppIconCover icon={project.icon} title={project.title} />
           : (
             <span className="relative flex flex-col items-center gap-3 text-white" aria-hidden="true">
@@ -32,7 +34,7 @@ export default function ProjectCard({ project }) {
       </div>
       <div className="p-5">
         <p className="font-mono text-xs uppercase tracking-wider text-violet-300">{project.category}</p>
-        <h3 className="mt-2 text-lg">{project.title}</h3>
+        <Heading className="mt-2 text-lg">{project.title}</Heading>
         <p className="mt-2 line-clamp-2 text-sm text-muted">{project.description}</p>
         <div className="mt-4 flex flex-wrap gap-1.5">
           {project.technologies.map((t) => <span key={t} className="rounded-full border border-line px-2.5 py-0.5 text-xs text-ink">{t}</span>)}

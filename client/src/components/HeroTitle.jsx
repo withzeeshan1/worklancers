@@ -4,15 +4,16 @@ import { AnimatePresence, m, useReducedMotion } from 'framer-motion';
 const WORDS = ['Web Apps', 'Mobile Apps', 'SaaS Products', 'AI Agents', 'Online Stores'];
 const ease = [0.22, 1, 0.36, 1];
 
-// Splits text into letters that rise in one after another.
+// Splits text into letters that rise in one after another. A CSS animation (animate-letter in
+// tailwind.config.js), not framer-motion, so the headline shows as soon as the page is drawn
+// instead of staying invisible until the JavaScript has loaded.
 function Letters({ text, delay = 0, className = '' }) {
   return (
     <span className={`inline-block whitespace-nowrap ${className}`}>
       {[...text].map((ch, i) => (
-        <m.span key={i} className="inline-block" initial={{ opacity: 0, y: '0.5em', filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 0.5, delay: delay + i * 0.03, ease }}>
+        <span key={i} className="inline-block animate-letter motion-reduce:animate-none" style={{ animationDelay: `${(delay + i * 0.03).toFixed(2)}s` }}>
           {ch === ' ' ? ' ' : ch}
-        </m.span>
+        </span>
       ))}
     </span>
   );

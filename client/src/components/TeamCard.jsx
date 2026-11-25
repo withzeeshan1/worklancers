@@ -1,3 +1,5 @@
+import { responsive } from '../utils/responsiveImage';
+
 // One person on the Team page: portrait photo (or initials when there's no photo yet), name and role.
 const initials = (name) => name.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
 
@@ -15,7 +17,7 @@ export default function TeamCard({ person, large = false }) {
     <article className="spotlight group overflow-hidden rounded-[1.5rem] border border-line bg-card shadow-soft transition duration-500 hover:-translate-y-1.5 hover:border-violet-500/40 hover:shadow-[0_20px_60px_-20px_rgb(139_92_246/0.45)]">
       <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-b from-white/[0.09] via-white/[0.04] to-transparent">
         {photo ? (
-          <img src={photo} alt={`${name}, ${role} at Worklancer`} width="600" height="750" loading="lazy" decoding="async"
+          <img {...responsive(photo, large ? '(min-width: 1024px) 430px, (min-width: 640px) 50vw, 100vw' : '(min-width: 1280px) 300px, (min-width: 1024px) 25vw, 50vw')} alt={`${name}, ${role} at Worklancer`} width="600" height="750" loading="lazy" decoding="async"
             className="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-[1.04]" />
         ) : (
           <div className="grid h-full place-items-center" aria-hidden="true">

@@ -6,6 +6,7 @@ import CtaBanner from '../components/CtaBanner';
 import TeamCard from '../components/TeamCard';
 import { Button, Eyebrow, PageHeader, Section } from '../components/ui';
 import { team } from '../services/content';
+import { responsive } from '../utils/responsiveImage';
 
 const everyone = [...team.founders, ...team.members];
 const marqueeWords = ['Your Growth', 'Our Expertise'];
@@ -24,7 +25,7 @@ export default function Team() {
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal from="right">
             <div className="relative overflow-hidden rounded-[1.75rem] border border-line shadow-soft">
-              <img src="/images/hero-office.webp" alt="The Worklancer team at work in the office" width="1000" height="667" loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
+              <img {...responsive('/images/hero-office.webp', '(min-width: 1280px) 600px, (min-width: 1024px) 50vw, 100vw')} alt="The Worklancer team at work in the office" width="1000" height="667" loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-violet-900/30 via-transparent to-transparent" aria-hidden="true" />
             </div>
           </Reveal>

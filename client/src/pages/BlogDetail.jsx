@@ -9,6 +9,10 @@ import CtaBanner from '../components/CtaBanner';
 import { Button, Section } from '../components/ui';
 import { posts } from '../services/content';
 import { formatDate } from '../utils/format';
+import { responsive } from '../utils/responsiveImage';
+
+// The article column is at most 768px wide (max-w-3xl).
+const articleSizes = '(min-width: 800px) 768px, 100vw';
 
 export default function BlogDetail() {
   const { slug } = useParams();
@@ -19,12 +23,12 @@ export default function BlogDetail() {
       <Seo title={p.title} description={p.excerpt} path={`/blog/${p.slug}`} type="article" image={p.image} imageAlt={p.imageAlt} jsonLd={[blogPosting(p), breadcrumbs([['Home', '/'], ['Blog', '/blog'], [p.title, `/blog/${p.slug}`]])]} />
       <Section>
         <article className="mx-auto max-w-3xl">
-          <m.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="inline-block rounded-full bg-primary-light px-3 py-1 text-sm font-semibold text-violet-300">{p.category}</m.p>
-          <m.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="mt-3 text-3xl sm:text-4xl">{p.title}</m.h1>
+          <m.p initial={{ y: 8 }} animate={{ y: 0 }} className="inline-block rounded-full bg-primary-light px-3 py-1 text-sm font-semibold text-violet-300">{p.category}</m.p>
+          <m.h1 initial={{ y: 12 }} animate={{ y: 0 }} transition={{ delay: 0.1 }} className="mt-3 text-3xl sm:text-4xl">{p.title}</m.h1>
           <p className="mt-3 text-sm text-muted">By {p.author} · <time dateTime={p.publishedAt}>{formatDate(p.publishedAt)}</time></p>
           {p.image && (
             <figure className="mt-8 overflow-hidden rounded-xl2 border border-line shadow-2xl shadow-black/40">
-              <img src={p.image} alt={p.imageAlt || ''} width={1600} height={900} fetchPriority="high" className="aspect-[16/9] w-full object-cover" />
+              <img {...responsive(p.image, articleSizes)} alt={p.imageAlt || ''} width={1600} height={900} fetchPriority="high" className="aspect-[16/9] w-full object-cover" />
             </figure>
           )}
           <div className="mt-8 space-y-5 text-lg leading-relaxed text-ink">
@@ -34,7 +38,7 @@ export default function BlogDetail() {
               if (block.h) return <h2 key={i} className="!mt-12 text-2xl sm:text-3xl">{block.h}</h2>;
               if (block.img) return (
                 <figure key={i} className="!my-10">
-                  <img src={block.img} alt={block.alt} width={1200} height={675} loading="lazy" className="aspect-[16/9] w-full rounded-xl2 border border-line object-cover" />
+                  <img {...responsive(block.img, articleSizes)} alt={block.alt} width={1200} height={675} loading="lazy" className="aspect-[16/9] w-full rounded-xl2 border border-line object-cover" />
                   {block.caption && <figcaption className="mt-3 text-center text-sm text-muted">{block.caption}</figcaption>}
                 </figure>
               );
