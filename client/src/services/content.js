@@ -516,7 +516,7 @@ export const serviceDetails = {
 // The "Our Founders" section only appears when `founders` has someone in it.
 export const team = {
   founders: [
-    { name: 'Zeeshan Sajjad', role: 'Founder & CEO', photo: '/images/team/zeeshan-sajjad.webp', linkedin: '' },
+    { name: 'Zeeshan Haider', role: 'Founder & CEO', photo: '/images/team/zeeshan-sajjad.webp', linkedin: '' },
     { name: 'Muhammad Asif', role: 'Co-Founder', photo: '/images/team/muhammad-asif.webp', linkedin: '' },
   ],
   members: [
