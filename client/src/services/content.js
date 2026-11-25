@@ -517,7 +517,7 @@ export const serviceDetails = {
 export const team = {
   founders: [
     { name: 'Zeeshan Haider', role: 'Founder & CEO', photo: '/images/team/zeeshan-sajjad.webp', linkedin: '' },
-    { name: 'Muhammad Asif', role: 'Co-Founder', photo: '/images/team/muhammad-asif.webp', linkedin: '' },
+    { name: 'Muhammad Asif', role: 'Co-Founder & AI Engineer', photo: '/images/team/muhammad-asif.webp', linkedin: '' },
   ],
   members: [
     { name: 'Dewind Baig', role: 'Project Manager', photo: '/images/team/dewind-baig.webp', linkedin: '' },
